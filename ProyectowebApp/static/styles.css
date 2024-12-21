@@ -1,6 +1,6 @@
 /* Estilo general de la página */
 body {font-family: 'Arial', sans-serif;background-color: #f4f7fa;margin: 0; padding: 0;box-sizing: border-box;}
-h1, h2, h3 {text-align: center;color: #333;margin-bottom: 20px;}
+h1, h2, h3 {text-align: center;color: red;margin-bottom: 20px;}
 /* Contenedor principal */
 .container {width: 100%;  max-width: 100%; margin: 0 auto;  padding: 2% 5%;  box-sizing: border-box; }
 /* Estilo del contenido principal */
@@ -10,7 +10,6 @@ h1, h2, h3 {text-align: center;color: #333;margin-bottom: 20px;}
 /********************************************************* Estilo de la cabecera **************************************************/
 header {background-color: #1f1f3e; color: white;  display: flex;  flex-direction: column; text-align: left; padding: 50px 20px; 
     position: relative;top: 0;width: 100%; font-size: 40px;}
-header h1 {margin: 0;  font-size: 3rem;  background-color: red;}
 
 /***************************************************** Estilo para los botones de la página *********************************************/
 button {margin: 5px;padding: 10px 20px;background-color: #007BFF;color: white;border: none;border-radius: 4px;cursor: pointer;width: auto;}
