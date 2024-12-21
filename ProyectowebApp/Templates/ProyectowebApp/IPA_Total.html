@@ -29,16 +29,17 @@
 <body>
     <header>
         <h1>3.2 Contribución a la Investigación de la Carrera</h1>
+        <!-- Botones para alternar secciones -->
+        <div>
+            <button id="showTables" class="toggle-button">Ver Tablas</button>
+            <button id="showCalculations" class="toggle-button">IPA Total</button>
+        </div>
     </header>
+
+    
     <main>
     <div class="container">
     <title>Home - Personal Académico</title>
-
-    <!-- Botones para alternar secciones -->
-    <div class="top-bar">
-        <button id="showTables" class="toggle-button">Ver Tablas</button>
-        <button id="showCalculations" class="toggle-button">IPA Total</button>
-    </div>
 
 
     <!-- Sección de Tablas -->
@@ -381,17 +382,12 @@
         <!-- Contenedor del gráfico -->
 
         <canvas id="grafico_Cualitativo" width="400" height="100"></canvas>
-        <script>
-            // Pasa los datos JSON desde Django a una variable global
-            const datosGrafico = JSON.parse('{{ datos_grafico_json|safe }}');
-        </script>
+        <script> const datosGrafico = JSON.parse('{{ datos_grafico_json|safe }}'); </script>
         <script src="{% static 'Js/Grafico_Cualitativas.js' %}"></script>
         
-        
         <div class="container mt-5">
-            <h1 class="text-center">Resultados de IPA por Año</h1>
+            <h1>Resultados de IPA por Año</h1>
 
-            <!-- Mostrar la tabla si hay datos -->
             {% if IPA_Anual %}
             <table id="IPA_Anual" class="display">
                     <thead>
@@ -435,11 +431,8 @@
     <button id="descargarBtn">Descargar Imagen</button>
 
     <canvas id="graficoGeneral" width="400" height="170"></canvas>
-    <script>
-        const datosGraficoIPA = JSON.parse('{{ datos_grafico_json_IPA|safe }}');
-    </script>
-    <script src="{% static 'Js/Grafico_IPA.js' %}"></script>
-                     
+    <script> const datosGraficoIPA = JSON.parse('{{ datos_grafico_json_IPA|safe }}'); </script>
+    <script src="{% static 'Js/Grafico_IPA.js' %}"></script>          
     <script src="{% static 'Js\TablasFormato.js' %}"></script>
     </main>
     
