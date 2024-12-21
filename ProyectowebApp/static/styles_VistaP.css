@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #000, #1e1e1e);
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.main-banner {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #1f1f3e, #0f0f1a);
+}
+
+.main-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.main-banner p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.search-bar {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 0.8rem 1rem;
+    border: none;
+    background-color: #ff5a5f;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.categories a {
+    text-decoration: none;
+    padding: 1rem 2rem;  /* Tamaño uniforme para todos los cuadros */
+    background-image: linear-gradient(45deg, #c7c2c0, #5a5a5a);  /* Fondo con gradiente */
+    border-radius: 50px;  /* Bordes redondeados */
+    color: white;
+    font-size: 1.2rem;  /* Tamaño de fuente uniforme */
+    font-weight: bold;  /* Fuente en negrita */
+    display: inline-block;  /* Asegura que el enlace se comporte como un bloque */
+    width: 250px;  /* Ancho fijo para todos los cuadros */
+    text-align: center;  /* Centra el texto dentro del cuadro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Sombra suave */
+    transition: background-image 0.3s, transform 0.3s;  /* Transición para efectos */
+}
+
+.categories a:hover {
+    background-image: linear-gradient(45deg, #6a11cb, #2575fc);  /* Fondo degradado en hover */
+    transform: scale(1.1);  /* Agranda el cuadro al pasar el mouse */
+}
+
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.9);
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+}

@@ -1,0 +1,267 @@
+/* Estilo general de la página */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0; /* Elimina el margen por defecto */
+    padding: 0;
+    box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho y alto de los elementos */
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;  /* Asegura que ocupe todo el ancho disponible */
+    max-width: 100%; /* Remueve el ancho máximo fijo */
+    margin: 0 auto;  /* Centra el contenido */
+    padding: 2% 5%;  /* Agrega un relleno relativo al tamaño de la pantalla */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+}
+
+header {
+    background-color: #1f1f3e; /* Fondo azul */
+    color: white;  /* Texto blanco */
+    display: flex;  /* Habilita Flexbox */
+    text-align: left;
+    padding: 100px 250px;  /* Ajusta el espaciado interno (más ancho con mayor padding horizontal) */
+    position: relative;
+    top: 0;
+    width: 100%;  /* Asegura que ocupe todo el ancho de la página */
+    font-size: 40px;  /* Ajusta el tamaño del texto */
+}
+
+/* Estilo para los elementos dentro del encabezado, como el <h1> */
+header h1 {
+    margin: 0;  /* Elimina márgenes adicionales */
+    text-align: center;
+    font-size: 3rem;  /* Ajusta el tamaño del título */
+    background-color: #1f1f3e; /* Fondo del título, mantén el color para consistencia */
+}
+
+
+/* Estilo para los encabezados */
+h1, h2, h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h1 {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Estilo para el título de las secciones */
+h2 {
+    color: #007BFF;
+}
+
+/* Estilo de los filtros */
+select {
+    width: 100%; /* Hace que el select ocupe todo el ancho disponible */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Estilos de los enlaces */
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Habilitar desplazamiento horizontal solo en las tablas */
+.dataTables_wrapper {
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    margin: 0 auto; /* Centra el contenedor de la tabla */
+}
+
+/* Ajusta las tablas para que funcionen con el desplazamiento */
+table {
+    width: 100%;  /* Asegura que la tabla ocupe todo el ancho disponible */
+    min-width: 1000px; /* Asegura un ancho mínimo para provocar el scroll si es necesario */
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Diseño responsivo para tablas */
+@media screen and (max-width: 768px) {
+    .dataTables_wrapper {
+        overflow-x: auto; /* Habilita el scroll horizontal en pantallas pequeñas */
+    }
+
+    table {
+        font-size: 12px;  /* Reduce el tamaño de la fuente en dispositivos pequeños */
+        min-width: 800px; /* Asegura que haya scroll horizontal */
+    }
+}
+
+/* Estilo para los botones de la página */
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: auto; /* Hace que el botón tenga solo el tamaño necesario */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+/* Contenedor para los filtros de búsqueda */
+.search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.search-container input, .search-container select {
+    margin-right: 10px;
+    width: 150px;  /* Ajusta el tamaño de los filtros */
+    padding: 8px;
+}
+
+#formulas-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap; /* Asegura que los elementos se acomoden en una nueva línea cuando no haya suficiente espacio */
+}
+
+#formulas-container > div {
+    flex: 0 0 auto;
+    min-width: 180px;
+    text-align: center;
+    padding: 10px;
+    border: 10px solid #ccc;
+}
+
+/* Estilos de los filtros en las tablas */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.filter-container select {
+    width: 150px;
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+/* Estilo para los elementos con clase .hidden */
+.hidden {
+    display: none;
+}
+
+/* Botón para toggle */
+.toggle-button {
+    background-color: #b0b0b0;
+    margin: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Asegura que los márgenes laterales estén bien definidos */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .search-container input, .search-container select {
+        width: 100%; /* Hace que los inputs y selects sean de ancho completo en pantallas pequeñas */
+        margin-right: 0;
+    }
+
+    .pagination {
+        flex-direction: column; /* Hace que los botones de paginación se apilen en dispositivos pequeños */
+    }
+}
+
+.footer {
+    background-image: linear-gradient(45deg, #000000, #434343); /* Fondo degradado negro */
+    color: white;  /* Texto en blanco */
+    text-align: center;  /* Centra el texto */
+    padding: 20px;  /* Espaciado interno */
+    position: fixed;
+    bottom: 0;
+    left: 0;  /* Asegura que esté alineado con el borde izquierdo */
+    width: 100%;  /* Asegura que ocupe todo el ancho de la página */
+    font-size: 1.5rem;
+}
+
+.footer p {
+    margin: 0;  /* Elimina márgenes adicionales */
+}
+
