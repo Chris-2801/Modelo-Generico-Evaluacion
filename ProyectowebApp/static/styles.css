@@ -1,6 +1,6 @@
 /* Estilo general de la página */
 body {font-family: 'Arial', sans-serif;background-color: #f4f7fa;margin: 0; padding: 0;box-sizing: border-box;}
-h1, h2, h3 {text-align: center;color: red;margin-bottom: 20px;}
+.ht {font-family: 'Arial'; text-align: center; color:red}
 /* Contenedor principal */
 .container {width: 100%;  max-width: 100%; margin: 0 auto;  padding: 2% 5%;  box-sizing: border-box; }
 /* Estilo del contenido principal */
@@ -8,7 +8,7 @@ h1, h2, h3 {text-align: center;color: red;margin-bottom: 20px;}
 .content h1 {font-size: 2rem;margin-bottom: 20px;}
 
 /********************************************************* Estilo de la cabecera **************************************************/
-header {background-color: #1f1f3e; color: white;  display: flex;  flex-direction: column; text-align: left; padding: 50px 20px; 
+header {background-color: white; color: white;  display: flex;  flex-direction: column; text-align: left; padding: 50px 20px; 
     position: relative;top: 0;width: 100%; font-size: 40px;}
 
 /***************************************************** Estilo para los botones de la página *********************************************/
