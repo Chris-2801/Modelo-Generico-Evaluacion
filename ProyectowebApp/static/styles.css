@@ -218,14 +218,7 @@ button:hover {
     display: none;
 }
 
-/* Botón para toggle */
-.toggle-button {
-    background-color: #b0b0b0;
-    margin: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 20px;
-}
+
 
 /* Asegura que los márgenes laterales estén bien definidos */
 body {
@@ -263,5 +256,35 @@ body {
 
 .footer p {
     margin: 0;  /* Elimina márgenes adicionales */
+}
+
+/* Estilo para la barra lateral superior */
+.top-bar {
+    display: flex; /* Usamos flexbox para alinear los botones horizontalmente */
+    justify-content: center; /* Centra los botones en el contenedor */
+    align-items: center; /* Alinea los botones verticalmente */
+    background-color: #333; /* Color de fondo de la barra */
+    padding: 10px 20px; /* Espaciado alrededor de los botones */
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.toggle-button {
+    background-color: #4CAF50; /* Color de fondo de los botones */
+    color: white; /* Color del texto */
+    border: none; /* Elimina el borde predeterminado */
+    padding: 10px 20px; /* Espaciado dentro de los botones */
+    margin: 0 10px; /* Espaciado entre los botones */
+    cursor: pointer; /* Cambia el cursor cuando se pasa sobre el botón */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño del texto */
+    transition: background-color 0.3s; /* Efecto de transición en el color de fondo */
+}
+
+.toggle-button:hover {
+    background-color: #45a049; /* Color al pasar el ratón */
 }
 
