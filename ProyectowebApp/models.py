@@ -51,6 +51,7 @@ class Documento(models.Model):
         ('Proyectos de Vinculación con la sociedad', 'Proyectos de Vinculación con la sociedad'),
     ]
     OPCIONES_ESTADO = [('Libro Total', 'Libro Total'), ('Libro Parcial', 'Libro Parcial'), ('No Aplica', 'No Aplica')]
+    OPCIONES_FACULTAD = [('Geología', 'Geología'), ('Minas', 'Minas'), ('Petróleos', 'Petróleos'), ('Ambiental', 'Ambiental')]
     ci1 = models.CharField(max_length=10,verbose_name="CI", default="",  validators=[
             RegexValidator(
                 regex='^\d{10}$',  # Exactamente 10 dígitos numéricos
@@ -60,6 +61,7 @@ class Documento(models.Model):
         ])
     nombre = models.CharField(max_length=50, choices=OPCIONES_TIPO, verbose_name="Tipo de Documento")
     filiacion_UEP = models.CharField(max_length=100, default="") 
+    carrera = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
     titulo = models.CharField(max_length=400,unique=True, primary_key=True, default="")
     nombre_revista = models.CharField(max_length=200, default="No Aplica", null=True, blank=True) #Solo en Artículos Científicos
     Base_datos = models.CharField(max_length=200, default="No Aplica")   #Solo en Artículos científicos
@@ -156,14 +158,68 @@ class Documento(models.Model):
     def __str__(self):
         return f"{self.titulo} {self.ci1} - {self.Año_Base_datos}"
 
-def Produccion_Cientifica(anio_inicio, anio_fin, anio_posterior):
+class Indicador20(models.Model):
+    OPCIONES_FuncSustantivas = [('Docencia', 'Docencia'), ('Investigación e Innovación', 'Investigación e Innovación'), ('Vinculación con la Sociedad', 'Vinculación con la Sociedad')]
+    OPCIONES_FACULTAD = [('Geología', 'Geología'), ('Minas', 'Minas'), ('Petróleos', 'Petróleos'), ('Ambiental', 'Ambiental')]
+    Funciones_Sustantivas = models.CharField(max_length=50, choices=OPCIONES_FuncSustantivas, verbose_name="Funciones Sustantivas")
+    carrera = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
+    nombre = models.CharField(max_length=300, default="", verbose_name='Nombre del Proyecto o Programa')
+    autores = models.CharField(max_length=300, default="", verbose_name='Autores del Proyecto o Programa')
+    Planificaciopn_Proyectos_Programas = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Documentación que evidencie la planificación de programas/proyectos interdisciplinares",
+        null=True,
+        blank=True
+    )
+    Ejecucion_Proyectos_Programas = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Documentación que evidencie la ejecución de programas/proyectos interdisciplinares",
+        null=True,
+        blank=True
+    )
+    Politicas_Procedimientos = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Políticas o procedimientos definidos para la planificación, ejecución y evaluación de los programas o proyectos interdisciplinares.",
+        null=True,
+        blank=True
+    )
+    Syllabus_Asignaturas = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Syllabus de las asignaturas consideradas en los programas o proyectos interdisciplinares ",
+        null=True,
+        blank=True
+    )
+    Productos_Resultados = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Documentación que evidencien los productos o resultados obtenidos en los proyectos",
+        null=True,
+        blank=True
+    )
+    Evidencia_Articulacion = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Documentación que evidencie el análisis de la articulación de las funciones sustantivas",
+        null=True,
+        blank=True
+    )
+    Evidencia_Difusion = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Documentación o medios que evidencie la difusión de los resultados de los programas o proyectos interdisciplinares",
+        null=True,
+        blank=True
+    )
+    Mejora_Gestion = models.FileField(
+        upload_to='pdfs/',  
+        verbose_name="Documentación que evidencie las acciones de mejora en la gestión de los programas o proyectos interdisciplinares",
+        null=True,
+        blank=True
+    )
+
+def Produccion_Cientifica(anio_inicio, anio_fin):
     
     documentos_rango_pasado = Documento.objects.filter(Año_Publiacion__gte=anio_inicio, Año_Publiacion__lte=anio_fin)
-    documentos_posteriores = Documento.objects.filter(Año_Publiacion__gte=anio_posterior)
-    documentos = documentos_rango_pasado | documentos_posteriores
+    documentos = documentos_rango_pasado 
     
     if not documentos:
-        # Si no hay documentos en el rango, devolver un mensaje de error
         return {'error': 'No hay documentos en el rango de años seleccionado.'}
 
     # Obtener los años de publicación de los documentos filtrados
@@ -179,12 +235,12 @@ def Produccion_Cientifica(anio_inicio, anio_fin, anio_posterior):
     cuartiles = {'Q1': Q1, 'Q2': Q2, 'Q3': Q3, 'Q4': Q4}
 
     # Contar los diferentes tipos de documentos
-    PI = documentos.filter(nombre='1').count()  # Artículos en Scopus o Web of Science
-    BR = documentos.filter(nombre='2').count()  # Artículos en bases de datos regionales
+    PI = documentos.filter(nombre='Artculos Scopus o Web of Science').count()  # Artículos en Scopus o Web of Science
+    BR = documentos.filter(nombre='Artículos bases de datos regionales').count()  # Artículos en bases de datos regionales
     NP = documentos.count()  # Total de documentos
 
-    tabla = []  # Lista para almacenar los datos de la tabla
-    suma_fi = 0  # Inicializamos la variable suma_fi para almacenar la suma de los valores de fi
+    tabla = [] 
+    suma_fi = 0 
 
     # Recorrer cada documento y determinar su cuartil
     for doc in documentos:
@@ -210,10 +266,10 @@ def Produccion_Cientifica(anio_inicio, anio_fin, anio_posterior):
             cuartil_nombre = 'Fuera de Q4'
 
         # Condicional adicional basado en el tipo de documento
-        if doc.nombre == '1':  # Artículos en Scopus o Web of Science
+        if doc.nombre == 'Artculos Scopus o Web of Science':  # Artículos en Scopus o Web of Science
             fi = 0.3
             cuartil_nombre = 'PI'  # Artículos en Scopus o Web of Science
-        elif doc.nombre == '2':  # Artículos en bases de datos regionales
+        elif doc.nombre == 'Artículos bases de datos regionales':  # Artículos en bases de datos regionales
             fi = 0.1
             cuartil_nombre = 'BR'  # Artículos en bases de datos regionales
 
@@ -221,12 +277,13 @@ def Produccion_Cientifica(anio_inicio, anio_fin, anio_posterior):
         tabla.append({
             'año': año,
             'Tipo_Documento': doc.nombre,
+            'Carrera': doc.carrera,
             'cuartil': cuartil_nombre,
             'fi': fi,
             'exposicion': doc.Exposicion_Procendings,
             'Capitulos_Desarrollados': doc.N_Cap_Par,
             'Capitulos_Totales': doc.T_Cap,
-            'Areas_Niveles': doc.Areas_Niveles
+            'Areas_Niveles': doc.Areas_Niveles,
         })
 
         # Sumar los valores de fi
@@ -234,11 +291,10 @@ def Produccion_Cientifica(anio_inicio, anio_fin, anio_posterior):
 
     return {'cuartiles': cuartiles, 'tabla': tabla, 'NP': NP, 'Produccion': suma_fi}
 
-def Produccion_Artistica(anio_inicio, anio_fin, anio_posterior):
+def Produccion_Artistica(anio_inicio, anio_fin):
 
     documentos_rango_pasado = Documento.objects.filter(Año_Publiacion__gte=anio_inicio, Año_Publiacion__lte=anio_fin)
-    documentos_posteriores = Documento.objects.filter(Año_Publiacion__gte=anio_posterior)
-    documentos = documentos_rango_pasado | documentos_posteriores
+    documentos = documentos_rango_pasado 
     
     if not documentos.exists():
         return {'error': 'No hay documentos en el rango de años seleccionado.'}
@@ -258,10 +314,9 @@ def Produccion_Artistica(anio_inicio, anio_fin, anio_posterior):
 
     return {'OPN': OPN, 'OPI': OPI, 'PA':PA}
 
-def Libros_Capitulos(anio_inicio, anio_fin, anio_posterior):
+def Libros_Capitulos(anio_inicio, anio_fin):
     documentos_rango_pasado = Documento.objects.filter(Año_Publiacion__gte=anio_inicio, Año_Publiacion__lte=anio_fin)
-    documentos_posteriores = Documento.objects.filter(Año_Publiacion__gte=anio_posterior)
-    documentos = documentos_rango_pasado | documentos_posteriores
+    documentos = documentos_rango_pasado 
     
     if not documentos.exists():
         return {'error': 'No hay documentos en el rango de años seleccionado.'}
@@ -279,10 +334,9 @@ def Libros_Capitulos(anio_inicio, anio_fin, anio_posterior):
     LyCL = round(L+suma_CLTC,4)
     return {'L': L, 'Suma_CLTC': suma_CLTC, 'LyCL': LyCL}
 
-def Propiedad_Intelectual_Aplicada(anio_inicio, anio_fin, anio_posterior):
+def Propiedad_Intelectual_Aplicada(anio_inicio, anio_fin):
     documentos_rango_pasado = Documento.objects.filter(Año_Publiacion__gte=anio_inicio, Año_Publiacion__lte=anio_fin)
-    documentos_posteriores = Documento.objects.filter(Año_Publiacion__gte=anio_posterior)
-    documentos = documentos_rango_pasado | documentos_posteriores
+    documentos = documentos_rango_pasado 
     
     if not documentos.exists():
         return {'error': 'No hay documentos en el rango de años seleccionado.'}
@@ -315,10 +369,10 @@ def IPA_Denomindaor():
 
     return {'PTC':PTC,'PMT':PMT,'IPA_Den': Denominador}
 
-def IPA(anio_inicio, anio_fin, anio_posterior, alfa1, alfa2, alfa3, alfa4):
+def IPA(anio_inicio, anio_fin, alfa1, alfa2, alfa3, alfa4):
     # Obtener los resultados de las funciones correspondientes
     # Producción Científica
-    produccion_cientifica = Produccion_Cientifica(anio_inicio, anio_fin, anio_posterior)
+    produccion_cientifica = Produccion_Cientifica(anio_inicio, anio_fin)
     
     if 'error' in produccion_cientifica:
         return produccion_cientifica  # Retorna el error si es que hay alguno
@@ -326,7 +380,7 @@ def IPA(anio_inicio, anio_fin, anio_posterior, alfa1, alfa2, alfa3, alfa4):
     Suma_fi = produccion_cientifica['Produccion']
     
     # Producción Artística
-    produccion_artistica = Produccion_Artistica(anio_inicio, anio_fin, anio_posterior)
+    produccion_artistica = Produccion_Artistica(anio_inicio, anio_fin)
     
     if 'error' in produccion_artistica:
         return produccion_artistica  # Retorna el error si es que hay alguno
@@ -334,7 +388,7 @@ def IPA(anio_inicio, anio_fin, anio_posterior, alfa1, alfa2, alfa3, alfa4):
     PA = produccion_artistica['PA']
     
     # Libros y Capitulos
-    libros_capitulos = Libros_Capitulos(anio_inicio, anio_fin, anio_posterior)
+    libros_capitulos = Libros_Capitulos(anio_inicio, anio_fin)
     
     if 'error' in libros_capitulos:
         return libros_capitulos  # Retorna el error si es que hay alguno
@@ -342,7 +396,7 @@ def IPA(anio_inicio, anio_fin, anio_posterior, alfa1, alfa2, alfa3, alfa4):
     LyLC = libros_capitulos['LyCL']
     
     # Propiedad Intelectual Aplicada
-    propiedad_intelectual = Propiedad_Intelectual_Aplicada(anio_inicio, anio_fin, anio_posterior)
+    propiedad_intelectual = Propiedad_Intelectual_Aplicada(anio_inicio, anio_fin)
     
     if 'error' in propiedad_intelectual:
         return propiedad_intelectual  # Retorna el error si es que hay alguno
@@ -369,7 +423,7 @@ def graficar_documentos():
     estados = [doc.Estado for doc in documentos]
     areas_niveles = [doc.Areas_Niveles for doc in documentos]
     exposiciones = [doc.Exposicion_Procendings for doc in documentos]
-    tipos_documentos = [doc.nombre for doc in documentos]  # Tipos de documentos
+    carrera = [doc.carrera for doc in documentos]
 
     # Contar la frecuencia de cada categoría
     data = {
@@ -377,6 +431,7 @@ def graficar_documentos():
         "estados": {estado: estados.count(estado) for estado in set(estados)},
         "areas_niveles": {area: areas_niveles.count(area) for area in set(areas_niveles)},
         "exposiciones": {expo: exposiciones.count(expo) for expo in set(exposiciones)},
+        "carrera": {carrera: carrera.count(carrera) for carrera in set(carrera)},
         "tipos_documentos": {}
     }
 
@@ -476,9 +531,32 @@ def graficar_documentos():
             else:
                 # Si no es un diccionario, inicializamos uno y luego asignamos el conteo
                 data["exposiciones"][exposicion] = {anio: count}
+    
+    # Frecuencia de documentos por año y carrera
+    anios_por_carrera = {}
+    for doc in documentos:
+        anio = doc.Año_Publiacion
+        carrera = doc.carrera  # Suponiendo que existe un atributo "Carrera" en los documentos
 
+        if anio not in anios_por_carrera:
+            anios_por_carrera[anio] = {}
 
-    # Retornar los datos procesados
+        if carrera not in anios_por_carrera[anio]:
+            anios_por_carrera[anio][carrera] = 0  # Inicializamos el contador
+
+        anios_por_carrera[anio][carrera] += 1  # Incrementamos el contador
+
+    # Asegurarnos de que data["carrera_niveles"] sea un diccionario de diccionarios
+    for anio, carreras in anios_por_carrera.items():
+        for carrera, count in carreras.items():
+            if carrera not in data["carrera"]:
+                data["carrera"][carrera] = {}  # Inicializamos un diccionario vacío si no existe
+            if isinstance(data["carrera"][carrera], dict):
+                data["carrera"][carrera][anio] = count  # Asignamos el conteo si es un diccionario
+            else:
+                data["carrera"][carrera] = {anio: count}
+
+    
     return data
 
 def IPA_Anual(alfa1, alfa2, alfa3, alfa4):
@@ -523,9 +601,9 @@ def IPA_Anual(alfa1, alfa2, alfa3, alfa4):
             fi = 0.5
         elif Q3T < año <= Q4T:
             fi = 0.35
-        if doc.nombre == '1':  # Artículos en Scopus o Web of Science
+        if doc.nombre == 'Artculos Scopus o Web of Science':  # Artículos en Scopus o Web of Science
             fi = 0.3
-        elif doc.nombre == '2':  # Artículos en bases de datos regionales
+        elif doc.nombre == 'Artículos bases de datos regionales':  # Artículos en bases de datos regionales
             fi = 0.1
     
         produccion_por_año[año] += fi
@@ -603,3 +681,320 @@ def graficar_ipa(alfa1, alfa2, alfa3, alfa4):
         'libros_capitulos': libros_capitulos,
         'pia': pia,
     }
+
+def IPA_Carrera(alfa1, alfa2, alfa3, alfa4):
+    documentosT = Documento.objects.all()
+    resultado_denominador = IPA_Denomindaor()
+    denominador_anual = resultado_denominador.get('IPA_Den')
+
+    # Inicializar variables para almacenar los resultados agrupados por carrera
+    produccion_cientifica_carrera = defaultdict(float)
+    produccion_artistica_carrera = defaultdict(float)
+    libros_capitulos_carrera = defaultdict(float)
+    propiedad_intelectual_aplicada_carrera = defaultdict(float)
+    LyCL_carrera = defaultdict(float)
+    PIA_carrera = defaultdict(float)
+    IPA_carrera = defaultdict(float)
+
+    # Verificar si hay documentos
+    if not documentosT.exists():
+        return []
+
+    # Extraer los años de publicación (sin necesidad de agrupar por año)
+    años_publicacionT = [int(doc.Año_Publiacion) for doc in documentosT]
+    Q1T = np.percentile(años_publicacionT, 20) if años_publicacionT else 0
+    Q2T = np.percentile(años_publicacionT, 40) if años_publicacionT else 0
+    Q3T = np.percentile(años_publicacionT, 60) if años_publicacionT else 0
+    Q4T = np.percentile(años_publicacionT, 80) if años_publicacionT else 0
+    cuartiles_total = {'Q1': Q1T, 'Q2': Q2T, 'Q3': Q3T, 'Q4': Q4T}
+
+    # Calcular las métricas por carrera, sin agrupar por año
+    for doc in documentosT:
+        # Asegúrate de que 'carrera' sea un string, si es una lista u otro tipo
+        carrera = str(doc.carrera)
+
+        # PROPIEDAD CIENTÍFICA
+        fi = 0
+        año = int(doc.Año_Publiacion)
+        if año <= Q1T:
+            fi = 1
+        elif Q1T < año <= Q2T:
+            fi = 0.8
+        elif Q2T < año <= Q3T:
+            fi = 0.5
+        elif Q3T < año <= Q4T:
+            fi = 0.35
+        if doc.nombre == 'Artculos Scopus o Web of Science':  # Artículos en Scopus o Web of Science
+            fi = 0.3
+        elif doc.nombre == 'Artículos bases de datos regionales':  # Artículos en bases de datos regionales
+            fi = 0.1
+    
+        produccion_cientifica_carrera[carrera] += fi
+
+        # PROPIEDAD ARTÍSTICA
+        OPN_T = 0
+        OPI_T = 0
+
+        if doc.Exposicion_Procendings == 'Nacional':
+            OPN_T += 1
+        elif doc.Exposicion_Procendings == 'Internacional':
+            OPI_T += 1
+
+        PA = round(OPI_T + 0.8 * OPN_T, 4)
+        produccion_artistica_carrera[carrera] += PA
+
+        # LIBROS Y CAPÍTULOS
+        if doc.nombre == 'Libros y capítulos':
+            if doc.N_Cap_Par == doc.T_Cap:
+                libros_capitulos_carrera[carrera] += 1 
+            else:
+                CLTC = doc.N_Cap_Par / doc.T_Cap
+                libros_capitulos_carrera[carrera] += CLTC  
+            LyCL_carrera[carrera] = round(libros_capitulos_carrera[carrera], 4)
+
+        # PROPIEDAD INTELECTUAL APLICADA
+        if doc.Areas_Niveles == 'Obtenciones Vegetales y Conocimientos Tradicionales':
+            propiedad_intelectual_aplicada_carrera[carrera] += 1
+        elif doc.Areas_Niveles == 'Derechos de Autor y Conexos':
+            propiedad_intelectual_aplicada_carrera[carrera] += 1
+        elif doc.Areas_Niveles == 'Propiedad Industrial':
+            propiedad_intelectual_aplicada_carrera[carrera] += 1
+        
+        PIA_carrera[carrera] = propiedad_intelectual_aplicada_carrera[carrera]
+
+    # Calcular IPA por carrera
+    for carrera in produccion_cientifica_carrera:
+        IPA_carrera[carrera] = round((alfa1 * produccion_cientifica_carrera[carrera] + alfa2 * produccion_artistica_carrera[carrera] + 
+                                      alfa3 * LyCL_carrera[carrera] + alfa4 * PIA_carrera[carrera]) / denominador_anual, 4)
+
+    # Crear la tabla final con los resultados agrupados por carrera
+    tabla_Anual_carrera = [
+        {
+            'carrera': carrera,
+            'Produccion_Cientifica': produccion_cientifica_carrera[carrera],
+            'Produccion_Artistica': produccion_artistica_carrera[carrera], 
+            'Libros_Capitulos': LyCL_carrera[carrera],
+            'PIA': PIA_carrera[carrera], 
+            'IPA_Anual': IPA_carrera[carrera], 
+        }
+        for carrera in produccion_cientifica_carrera
+    ]
+
+    return {'Tabla_anual_carrera':tabla_Anual_carrera, 'cuartiles_total':cuartiles_total}
+
+def IPA_Anual_por_carrera_y_rango(anio_inicio, anio_fin, alfa1, alfa2, alfa3, alfa4):
+    # Filtrar los documentos dentro del rango de años seleccionado
+    documentos_rango_pasado = Documento.objects.filter(Año_Publiacion__gte=anio_inicio, Año_Publiacion__lte=anio_fin)
+    documentosT = documentos_rango_pasado
+    
+    if not documentosT:
+        return {'error': 'No hay documentos en el rango de años seleccionado.'}
+
+    resultado_denominador = IPA_Denomindaor()
+    denominador_anual = resultado_denominador.get('IPA_Den')
+
+    # Inicializar variables para almacenar los resultados agrupados por carrera
+    produccion_cientifica_carrera = defaultdict(float)
+    produccion_artistica_carrera = defaultdict(float)
+    libros_capitulos_carrera = defaultdict(float)
+    propiedad_intelectual_aplicada_carrera = defaultdict(float)
+    LyCL_carrera = defaultdict(float)
+    PIA_carrera = defaultdict(float)
+    IPA_carrera = defaultdict(float)
+
+    # Verificar si hay documentos
+    if not documentosT.exists():
+        return []
+
+    # Extraer los años de publicación de los documentos dentro del rango de años seleccionado
+    años_publicacionT = [int(doc.Año_Publiacion) for doc in documentosT]
+    
+    # Calcular los cuartiles de los años de publicación dentro del rango seleccionado
+    Q1T = np.percentile(años_publicacionT, 20) if años_publicacionT else 0
+    Q2T = np.percentile(años_publicacionT, 40) if años_publicacionT else 0
+    Q3T = np.percentile(años_publicacionT, 60) if años_publicacionT else 0
+    Q4T = np.percentile(años_publicacionT, 80) if años_publicacionT else 0
+
+    # Calcular las métricas por carrera, considerando el rango de años de cada carrera
+    for doc in documentosT:
+        carrera = doc.carrera
+        año = int(doc.Año_Publiacion)
+        
+        # Verificar si el año de publicación está dentro del rango de años proporcionado
+        if año < anio_inicio or año > anio_fin:
+            continue  # Si el año no está en el rango de años proporcionado, se salta este documento
+
+        # PROPIEDAD CIENTÍFICA
+        fi = None
+        if año <= Q1T:
+            fi = 1
+        elif Q1T < año <= Q2T:
+            fi = 0.8
+        elif Q2T < año <= Q3T:
+            fi = 0.5
+        elif Q3T < año <= Q4T:
+            fi = 0.35
+        else:
+            fi = 0
+
+        if doc.nombre == 'Artculos Scopus o Web of Science':  # Artículos en Scopus o Web of Science
+            fi = 0.3
+        elif doc.nombre == 'Artículos bases de datos regionales':  # Artículos en bases de datos regionales
+            fi = 0.1
+    
+        produccion_cientifica_carrera[carrera] += fi
+
+        # PROPIEDAD ARTÍSTICA
+        OPN_T = 0
+        OPI_T = 0
+
+        if doc.Exposicion_Procendings == 'Nacional':
+            OPN_T += 1
+        elif doc.Exposicion_Procendings == 'Internacional':
+            OPI_T += 1
+
+        PA = round(OPI_T + 0.8 * OPN_T, 4)
+        produccion_artistica_carrera[carrera] += PA
+
+        # LIBROS Y CAPÍTULOS
+        if doc.nombre == 'Libros y capítulos':
+            if doc.N_Cap_Par == doc.T_Cap:
+                libros_capitulos_carrera[carrera] += 1 
+            else:
+                CLTC = doc.N_Cap_Par / doc.T_Cap
+                libros_capitulos_carrera[carrera] += CLTC  
+            LyCL_carrera[carrera] = round(libros_capitulos_carrera[carrera], 4)
+
+        # PROPIEDAD INTELECTUAL APLICADA
+        if doc.Areas_Niveles == 'Obtenciones Vegetales y Conocimientos Tradicionales':
+            propiedad_intelectual_aplicada_carrera[carrera] += 1
+        elif doc.Areas_Niveles == 'Derechos de Autor y Conexos':
+            propiedad_intelectual_aplicada_carrera[carrera] += 1
+        elif doc.Areas_Niveles == 'Propiedad Industrial':
+            propiedad_intelectual_aplicada_carrera[carrera] += 1
+        
+        PIA_carrera[carrera] = propiedad_intelectual_aplicada_carrera[carrera]
+
+    # Calcular IPA por carrera
+    for carrera in produccion_cientifica_carrera:
+        IPA_carrera[carrera] = round((alfa1 * produccion_cientifica_carrera[carrera] + alfa2 * produccion_artistica_carrera[carrera] + 
+                                      alfa3 * LyCL_carrera[carrera] + alfa4 * PIA_carrera[carrera]) / denominador_anual, 4)
+
+    # Crear la tabla final con los resultados agrupados por carrera y rango de años
+    tabla_Anual_carrera = [
+        {
+            'carrera': carrera,
+            'rango_anos': f"{anio_inicio} - {anio_fin}",
+            'Produccion_Cientifica': produccion_cientifica_carrera[carrera],
+            'Produccion_Artistica': produccion_artistica_carrera[carrera], 
+            'Libros_Capitulos': LyCL_carrera[carrera],
+            'PIA': PIA_carrera[carrera], 
+            'IPA_Anual': IPA_carrera[carrera], 
+        }
+        for carrera in produccion_cientifica_carrera
+    ]
+
+    # Retornar la tabla con los resultados
+    return tabla_Anual_carrera
+
+def IPA_Anual_por_rango(anio_inicio, anio_final, alfa1, alfa2, alfa3, alfa4):
+    # Filtrar documentos dentro del rango de años
+    documentosT = Documento.objects.filter(Año_Publiacion__gte=anio_inicio, Año_Publiacion__lte=anio_final)
+    
+    # Obtener el denominador anual
+    resultado_denominador = IPA_Denomindaor()
+    denominador_anual = resultado_denominador.get('IPA_Den')
+
+    # Inicializar variables
+    produccion_por_año = defaultdict(float) 
+    PA_por_año = defaultdict(float)
+    L_por_año = defaultdict(float)  
+    CLTC_por_año = defaultdict(float)  # Acumuladores
+    LyCL_por_año = defaultdict(float)
+    PI_por_año = defaultdict(int)  
+    DA_por_año = defaultdict(int)  
+    OVCT_por_año = defaultdict(int) 
+    PIA_por_año = defaultdict(float)  
+    IPA_por_año = defaultdict(float)
+
+    # Verificar si hay documentos
+    if not documentosT.exists():
+        return []
+
+    # Extraer los años de publicación
+    años_publicacionT = [int(doc.Año_Publiacion) for doc in documentosT]
+    Q1T = np.percentile(años_publicacionT, 20) if años_publicacionT else 0
+    Q2T = np.percentile(años_publicacionT, 40) if años_publicacionT else 0
+    Q3T = np.percentile(años_publicacionT, 60) if años_publicacionT else 0
+    Q4T = np.percentile(años_publicacionT, 80) if años_publicacionT else 0
+
+    # Calcular PC por cada documento
+    for doc in documentosT:
+
+        # PROPIEDAD CIENTÍFICA
+        año = int(doc.Año_Publiacion)
+        fi = 0
+        if año <= Q1T:
+            fi = 1
+        elif Q1T < año <= Q2T:
+            fi = 0.8
+        elif Q2T < año <= Q3T:
+            fi = 0.5
+        elif Q3T < año <= Q4T:
+            fi = 0.35
+        if doc.nombre == 'Artculos Scopus o Web of Science':  # Artículos en Scopus o Web of Science
+            fi = 0.3
+        elif doc.nombre == 'Artículos bases de datos regionales':  # Artículos en bases de datos regionales
+            fi = 0.1
+    
+        produccion_por_año[año] += fi
+
+        # PROPIEDAD ARTÍSTICA
+        año = int(doc.Año_Publiacion)
+        OPN_T = 0
+        OPI_T = 0
+
+        if doc.Exposicion_Procendings == 'Nacional':
+            OPN_T += 1
+        elif doc.Exposicion_Procendings == 'Internacional':
+            OPI_T += 1
+
+        PA = round(OPI_T + 0.8 * OPN_T, 4)
+        PA_por_año[año] += PA
+
+        # LIBROS Y CAPÍTULOS
+        if doc.nombre == 'Libros y capítulos':
+            if doc.N_Cap_Par == doc.T_Cap:
+                L_por_año[año] += 1 
+            else:
+                CLTC = doc.N_Cap_Par / doc.T_Cap
+                CLTC_por_año[año] += CLTC  
+            LyCL_por_año[año] = round(L_por_año[año] + CLTC_por_año[año], 4)
+
+        # PROPIEDAD INTELECTUAL APLICADA
+        if doc.Areas_Niveles == 'Obtenciones Vegetales y Conocimientos Tradicionales':
+            OVCT_por_año[año] += 1
+        elif doc.Areas_Niveles == 'Derechos de Autor y Conexos':
+            DA_por_año[año] += 1
+        elif doc.Areas_Niveles == 'Propiedad Industrial':
+            PI_por_año[año] += 1
+        PIA_por_año[año] = PI_por_año[año] + DA_por_año[año] + OVCT_por_año[año]
+    
+        IPA_por_año[año] = round((alfa1 * produccion_por_año[año] + alfa2 * PA_por_año[año] + 
+                                  alfa3 * LyCL_por_año[año] + alfa4 * PIA_por_año[año]) / 
+                                  denominador_anual, 4)
+
+    # Crear la tabla de resultados
+    tabla_Anual = [
+        {
+            'año': año,
+            'Produccion_Cientifica': produccion_por_año[año],
+            'Produccion_Artistica': PA_por_año.get(año, 0), 
+            'Libros_Capitulos': LyCL_por_año.get(año, 0),
+            'PIA': PIA_por_año.get(año, 0), 
+            'IPA_Anual': IPA_por_año.get(año, 0), 
+        }
+        for año in range(anio_inicio, anio_final + 1)
+    ]
+
+    return tabla_Anual

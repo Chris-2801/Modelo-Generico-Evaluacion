@@ -1,0 +1,719 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!-- Estilos y librerías -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+    <!-- Librerías de JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+    <!-- Incluir KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+
+    <!-- Graficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div id="container">
+    <header>
+        <h1 class="ht">3. Criterio Investigación e innovación</h1>
+        <h2 class="httitle">3.2. Subcriterio Contribución de la investigación a la carrera</h2>
+        <hr>   
+        <div>
+            <button id="toggle-button" class="toggle-button">☰</button>
+            <button id="Introduccion" class="toggle-button"> 
+                <img src="/static/Img/abstract.png" alt="Ver Tablas" class="button-icon">Introducción
+            </button>
+            <button id="showTables" class="toggle-button"> 
+                <img src="/static/Img/table.png" alt="Ver Tablas" class="button-icon">Base de Datos
+            </button>
+            <button id="showCalculations" class="toggle-button">
+                <img src="/static/Img/chart.png" alt="Ver Tablas" class="button-icon">Indicador 19 Periodo Evaluación
+            </button>
+            <button id="showCalculationsCarrera" class="toggle-button"> 
+                <img src="/static/Img/analytics.png" alt="Ver Tablas" class="button-icon">Indicador 19 Datos Totales
+            </button>
+            <button id="ShowIndicador20" class="toggle-button"> 
+                <img src="/static/Img/project.png" alt="Ver Tablas" class="button-icon">Indicador 20
+            </button>
+        </div>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="{% url 'VistaPrincipal' %}">Inicio</a></li>
+            <li>
+                <a href="{% url 'Indicador3' %}">3. Criterio Investigación e innovación</a>
+                <ul>
+                    <li><a href="#">3.1 Subcriterio Gestión de la investigación e innovación</a></li>
+                    <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggle-button");
+        const sidebar = document.getElementById("sidebar");
+        const container = document.getElementById("container");
+         toggleButton.addEventListener("click", function () {
+         sidebar.classList.toggle("active");
+         container.classList.toggle("sidebar-active");
+        });
+    });
+    </script>
+
+    <main>
+        <title>Home - Personal Académico</title>
+
+        <!-- Sección Introductoria -->
+        <div id="IntroSection">
+
+            <form id="calculationForm" method="POST" action="{% url 'Contribucion_Investigacion' %}" class="form-container">
+                {% csrf_token %}
+
+                <label for="anio_evaluacion">Año de Evaluación:</label>
+                <input type="text" id="anio_evaluacion" name="anio_evaluacion" required><br>
+            
+                <label for="alfa1">Alfa1:</label>
+                <input type="number" step="0.01" id="alfa1" name="alfa1" required><br>
+            
+                <label for="alfa2">Alfa2:</label>
+                <input type="number" step="0.01" id="alfa2" name="alfa2" required><br>
+            
+                <label for="alfa3">Alfa3:</label>
+                <input type="number" step="0.01" id="alfa3" name="alfa3" required><br>
+            
+                <label for="alfa4">Alfa4:</label>
+                <input type="number" step="0.01" id="alfa4" name="alfa4" required><br>
+            
+                <button type="submit">Calcular IPA</button>
+
+            </form>
+            <hr>
+            <div style="text-align: center;">
+                <img src="/static/Img/Seccion3.png" alt="Imagen centrada" style="width: 55%; height: auto;">
+            </div>
+            <hr>
+            <h2 class="ht1">Indicador 19. Producción académica</h2>
+
+            <h3 class="justificado">
+                Es necesaria la evaluación de los resultados de las investigaciones
+                realizadas por las carreras, desde esta perspectiva (Rojas, 2021) afirmaron que
+                las universidades ecuatorianas requieren de un monitoreo sistemático de la
+                información de sus resultados e impacto. Los autores también mencionaron que 
+                el uso de indicadores para medir la producción científica y evaluar los
+                resultados de los profesores presentan una gran diversidad, que se basa tanto
+                en aspectos bibliométricos de carácter científico, como estándares de gestión
+                de la calidad. A partir de esto, se presenta un indicador cuantitativo que busca
+                evaluar de forma compilada la producción científica de los profesores de la
+                carrera
+            </h3>      
+            <hr>
+            <h2 class="ht1">Indicador 20. . Interdisciplinariedad para la articulación de las funciones
+                sustantivas </h2>
+
+            <h3 class="justificado">
+                Las UEP como organizaciones pluridisciplinares a través de las diversas
+                disciplinas o carreras generan espacios de integración de las funciones
+                sustantivas, entendida como la relación reciproca de una o varias disciplinas
+                que se complementan o suman esfuerzos para atender un mismo problema
+                o proyecto del contexto institucional o social. La interdisciplinariedad se
+                produce cuando hay coordinación o integración de un conjunto de saberes
+                entre las diversas disciplinas en relación con algún fenómeno en concreto o
+                necesidad social (CES-PDSES, 2022).
+            </h3>
+
+            <h3>
+                El atender una realidad compleja requiere de la interdisciplinaridad, este
+                encuentro entre estudiantes y profesores universitarios brinda la posibilidad
+                para un abordaje conjunto de problemas que pueden ser atendidos de modo
+                diverso pero complementario, lo que enriquece el proceso de enseñanzaaprendizaje 
+                y promueva la articulación de las funciones universitarias.
+                Las actividades conjuntas entre asignaturas de las diferentes funciones
+                universitarias permiten ejercitar una educación colaborativa e integradora que
+                contribuye a una formación integral del estudiante (Rivera, 2015 ).
+            </h3>
+        </div>
+        <!-- Sección de Tablas -->
+        <div id="tablasSection" class="hidden">        
+        
+            {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+
+            <h3>Lista de Personal Académico</h3>
+            <table id="personal_academico_table" class="display">
+                <thead>
+                    <tr>
+                        <th>CI</th>
+                        <th>Primer Nombre</th>
+                        <th>Segundo Nombre</th>
+                        <th>Primer Apellido</th>
+                        <th>Segundo Apellido</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Género</th>
+                        <th>Estado Civil</th>
+                        <th>Correo Electrónico</th>
+                        <th>Teléfono</th>
+                        <th>Asignaturas Impartidas</th>
+                        <th>Programa Educativo</th>
+                        <th>Tipo de Contrato</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.ci }}</td>
+                        <td>{{ registro.Primer_nombre }}</td>
+                        <td>{{ registro.Segundo_nombre }}</td>
+                        <td>{{ registro.primer_apellido }}</td>
+                        <td>{{ registro.segundo_apellido }}</td>
+                        <td>{{ registro.fecha_nacimiento }}</td>
+                        <td>{{ registro.genero }}</td>
+                        <td>{{ registro.estado_civil }}</td>
+                        <td>{{ registro.correo_institucional }}</td>
+                        <td>{{ registro.telefono_contacto }}</td>
+                        <td>{{ registro.asignaturas_impartidas }}</td>
+                        <td>{{ registro.programa_educativo }}</td>
+                        <td>{{ registro.tipo_contrato }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>Lista de Documentos</h3>
+            <table id="documento_table" class="display">
+                <thead>
+                    <tr>
+                        <th>CI</th>
+                        <th>Tipo de Documento</th>
+                        <th>Título</th>
+                        <th>Filiación UEP</th>
+                        <th>Carrera</th>
+                        <th>Nombre de Revista</th>
+                        <th>Base de Datos</th>
+                        <th>Año Base de Datos</th>
+                        <th>Evento/Compendio</th>
+                        <th>Editorial</th>
+                        <th>Filiación Autores</th>
+                        <th>Código ISSN</th>
+                        <th>Código ISBN</th>
+                        <th>Año de Publicación</th>
+                        <th>Capitulos Desarrolados</th>
+                        <th>Capitulos Totales</th>
+                        <th>Estado del Documento</th>
+                        <th>Areas y Niveles</th>
+                        <th>Link de Acceso</th>
+                        <th>N° Registro SENADI</th>
+                        <th>Exposición Procendings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for documento in documentos %}
+                    <tr>
+                        <td>{{ documento.ci1 }}</td>
+                        <td>{{ documento.get_nombre_display }}</td>
+                        <td>{{ documento.titulo }}</td>
+                        <td>{{ documento.filiacion_UEP }}</td>
+                        <td>{{ documento.carrera }}</td>
+                        <td>{{ documento.nombre_revista }}</td>
+                        <td>{{ documento.Base_datos }}</td>
+                        <td>{{ documento.Año_Base_datos }}</td>
+                        <td>{{ documento.nombre_evento_o_compendio }}</td>
+                        <td>{{ documento.Editorial }}</td>
+                        <td>{{ documento.Filiacion_Autor_es }}</td>
+                        <td>{{ documento.Codigo_ISSN }}</td>
+                        <td>{{ documento.Codigo_ISBN }}</td>
+                        <td>{{ documento.Año_Publiacion }}</td>
+                        <td>{{ documento.N_Cap_Par }}</td>
+                        <td>{{ documento.T_Cap }}</td>
+                        <td>{{ documento.Estado }}</td>
+                        <td>{{ documento.Areas_Niveles }}</td>
+                        <td>{{ documento.link_acceso }}</td>
+                        <td>{{ documento.N_Registro_Senadi }}</td>
+                        <td>{{ documento.Exposicion_Procendings }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>Fuentes de Información: Indicador 19</h3>
+            <table id="documentos_adicionales_table" class="display">
+                <thead>
+                    <tr>
+                        <th>CI</th>
+                        <th>Titulo</th>
+                        <th>Revisión por Pares</th>
+                        <th>Revisión por Externos</th>
+                        <th>Evidencia Nacional</th>
+                        <th>Evidencia Internacional</th>
+                        <th>Certificado Registro SENADI</th>
+                        <th>Certificados de Exposiciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for documento in documentos_adicionales %}
+                    <tr>
+                        <td>{{ documento.ci1 }}</td>
+                        <td>{{ documento.titulo }}</td>
+                        <td>
+                            {% if documento.Revision_pares %}
+                                <a href="{{ documento.Revision_pares.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if documento.Revision_externos %}
+                                <a href="{{ documento.Revision_externos.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if documento.Evidencia_Nacional %}
+                                <a href="{{ documento.Evidencia_Nacional.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if documento.Evidencia_Internacional %}
+                                <a href="{{ documento.Evidencia_Internacional.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>{% if documento.Registro_SENADI %}
+                            <a href="{{ documento.Registro_SENADI.url }}" target="_blank">Ver Documento</a>
+                        {% else %} No disponible {% endif %}
+                        </td>
+
+                        <td>
+                            {% if documento.Certificados_Exposiciones %}
+                                <a href="{{ documento.Certificados_Exposiciones.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h3>Fuentes de Información: Indicador 20</h3>
+            <table id="documentos_table_Indicador20" class="display">
+                <thead>
+                    <tr>
+                        <th>Carrera</th>
+                        <th>Nombre del proyecto o programa</th>
+                        <th>autores</th>
+                        <th>Evidencia de planificación</th>
+                        <th>Evidencia de ejecucion</th>
+                        <th>Politicas y procedimientos</th>
+                        <th>Syllabus de asignaturas</th>
+                        <th>Evidencias de productos y resultados</th>
+                        <th>Evidencia de articulacion de funciones</th>
+                        <th>Evidencia de difusion</th>
+                        <th>Evidencia de mejora de la gestión</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Indicador20 in Documentos_Indicadorp20 %}
+                    <tr>
+                        <td>{{ Indicador20.carrera }}</td>
+                        <td>{{ Indicador20.nombre }}</td>
+                        <td>{{ Indicador20.autores }}</td>
+                        <td>
+                            {% if Indicador20.Planificaciopn_Proyectos_Programas %}
+                                <a href="{{ Indicador20.Planificaciopn_Proyectos_Programas.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Ejecucion_Proyectos_Programas %}
+                                <a href="{{ Indicador20.Ejecucion_Proyectos_Programas.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Politicas_Procedimientos %}
+                                <a href="{{ Indicador20.Politicas_Procedimientos.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Syllabus_Asignaturas %}
+                                <a href="{{ Indicador20.Syllabus_Asignaturas.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Productos_Resultados %}
+                                <a href="{{ Indicador20.Productos_Resultados.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Evidencia_Articulacion %}
+                                <a href="{{ Indicador20.Evidencia_Articulacion.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Evidencia_Difusion %}
+                                <a href="{{ Indicador20.Evidencia_Difusion.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                        <td>
+                            {% if Indicador20.Mejora_Gestion %}
+                                <a href="{{ Indicador20.Mejora_Gestion.url }}" target="_blank">Ver Documento</a>
+                            {% else %} No disponible {% endif %}
+                        </td>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- Sección de Cálculos -->
+        <div id="calculosSection" class="hidden">
+            <h1>Indicador 19. Producción académica</h1>
+            <hr>
+            <h4>Tipo : Cuantitativo</h4>
+            <h4>
+                Estándar:  <span style="color: #0071b7;">La gestión de la investigación e innovación es efectiva. El índice
+                de producción académica per cápita es adecuado como resultado de los
+                procesos y proyectos de investigación e innovación y/o vinculación.</span>
+            </h4>
+            <h4>Periodo de evaluación: Tres años antes del inicio del proceso de evaluación.</h4>
+            <hr>
+            <h4>Total de Personal Académico: {{ total_registros }}</h4>
+
+            <h4>Cuartiles de Publicación</h4>
+            <ul>
+                <li>Primer cuartil (Q1): {{ cuartiles.Q1 }}</li>
+                <li>Segundo cuartil (Q2): {{ cuartiles.Q2 }}</li>
+                <li>Tercer cuartil (Q3): {{ cuartiles.Q3 }}</li>
+                <li>Tercer cuartil (Q4): {{ cuartiles.Q4 }}</li>
+            </ul>
+
+            <h4>Número de publicaciones (NP): {{ Numero_Publicaciones }}</h4>
+            <hr>
+            <h4>Personal académico con dedicación a tiempo completo (PTC): {{ PTC }}</h4>
+            <h4>Personal académico con dedicación a medio tiempo (PMT): {{ PMT }}</h4>
+            <hr>
+
+            <div id="formulas-container" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+                <div id="formula-container_PC"></div>
+                <div id="formula-container_PA"></div>
+                <div id="formula-container_LyCL"></div>
+                <div id="formula-container_PIA"></div>
+            </div>
+            
+            <!-- Nueva fila para la fórmula -->
+            <div id="new-formula-row" style="display: flex; justify-content: center; margin-top: 20px;">
+                <div id="formula-container_IPA"></div>
+            </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    var formulas = [
+                        { id: "formula-container_PC", formula: "PC = \\sum_{i=1}^{NP} \\varphi_i" },
+                        { id: "formula-container_PA", formula: "PA = OPI + (0.8 \\times OPN)" },
+                        { id: "formula-container_LyCL", formula: "LyCL = L + \\sum_{i=1}^{CL} \\frac{CLi}{TCi}" },
+                        { id: "formula-container_PIA", formula: "PIA = \\sum_{i=1}^{PP} \\left(PIi + DAi + OV_i \\times CT_i\\right)" },
+                        { id: "formula-container_IPA", formula: "IPA = \\frac{(PC \\times \\alpha_1) + (PA \\times \\alpha_2) + (LyCL \\times \\alpha_3) + (PIA \\times \\alpha_4)}{PTC + 0.5 \\times PTM}" }
+                    ];
+            
+                    formulas.forEach(f => {
+                        var container = document.getElementById(f.id);
+                        if (container) {
+                            katex.render(f.formula, container);
+
+                            if (f.id === "formula-container_IPA") {
+                                container.style.fontSize = "2em"; // Cambiar el tamaño aquí
+                            }
+                        }
+                    });
+                });
+            </script>
+            
+            <table id="documento_table_Calculos" class="display">
+                <thead>
+                    <tr>
+                        <th>Año de Publicación</th>
+                        <th>Tipo de Documento</th>
+                        <th>Carrera</th>
+                        <th>Cuartil</th>
+                        <th>Valor de fi</th>
+                        <th>Procendings</th>
+                        <th>Caitulos Parciales</th>
+                        <th>Capítulos Totales</th>
+                        <th>Áreas y Niveles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fila in tabla %}
+                        <tr>
+                            <td>{{ fila.año }}</td>
+                            <td>{{ fila.Tipo_Documento }}</td>
+                            <td>{{ fila.Carrera }}</td>
+                            <td>{{ fila.cuartil }}</td>
+                            <td>{{ fila.fi }}</td>
+                            <td>{{ fila.exposicion }}</td>
+                            <td>{{ fila.Capitulos_Desarrollados }}</td>
+                            <td>{{ fila.Capitulos_Totales }}</td>
+                            <td>{{ fila.Areas_Niveles }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <table id="documento_table_Calculos" class="display">
+                <thead>
+                    <tr>
+                        <th>Año de Evaluacion Seleccionado</th>
+                        <th>Producción Científica (PC)</th>
+                        <th>&alpha;<sub>1</sub></th> 
+                        <th>Producción Artística (PA)</th>
+                        <th>&alpha;<sub>2</sub></th>
+                        <th>Libros y capítulos de libros revisados por pares (LyCL)</th>
+                        <th>&alpha;<sub>3</sub></th>
+                        <th>Propiedad intelectual aplicada (PIA)</th>
+                        <th>&alpha;<sub>4</sub></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ anio_evaluacion }}</td>
+                        <td>{{ Produccion_Cientifica }}</td>
+                        <td>{{ alfa1 }}</td>
+                        <td>{{ PA }}</td>
+                        <td>{{ alfa2 }}</td>
+                        <td>{{ LyCL }}</td>
+                        <td>{{ alfa3 }}</td>
+                        <td>{{ PIA }}</td>   
+                        <td>{{ alfa4 }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>El Índice de producción académica per cápita (IPA): {{ IPA }} ({{anio_inicio}} - {{anio_fin}})</h4>
+
+            <h1>Indicador 19. Estadisticas Categóricas Cualitativas</h1>
+
+            <!-- Menú para seleccionar la variable -->
+
+            <button id="descargarBtn1">Descargar Imagen</button>
+            <select id="categoria" onchange="actualizarGrafico()">
+                <option value="tipos_documentos">Tipos de Documentos</option>
+                <option value="estados">Estado</option>
+                <option value="areas_niveles">Áreas y Niveles</option>
+                <option value="exposiciones">Exposiciones</option>
+                <option value="carrera">Carrera</option>
+            </select>
+            <!-- Filtro de años -->
+            <div id="filtro-anios" style="display: block;">
+                <label for="filtro">Filtrar por año:</label>
+                <select id="filtro" onchange="actualizarGrafico()">
+                    <option value="todo">Todo</option>
+                    <option value="un_ano">Un Año</option>
+                    <option value="rango_anos">Rango de Años</option>
+                </select>
+
+                <!-- Selector de un año -->
+                <div id="selector-ano" style="display: none;">
+                    <label for="ano">Selecciona un año:</label>
+                    <select id="ano" onchange="actualizarGrafico()">
+                        <!-- Los años disponibles se llenarán con JavaScript -->
+                    </select>
+                </div>
+
+                <!-- Selector de rango de años -->
+                <div id="selector-rango" style="display: none;">
+                    <label for="ano-inicio">Desde:</label>
+                    <select id="ano-inicio" onchange="actualizarGrafico()"></select>
+
+                    <label for="ano-fin">Hasta:</label>
+                    <select id="ano-fin" onchange="actualizarGrafico()"></select>
+                </div>
+            </div>
+
+            <!-- Contenedor del gráfico -->
+            <canvas id="grafico_Cualitativo" width="400" height="100"></canvas>
+            <script> const datosGrafico = JSON.parse('{{ datos_grafico_json|safe }}'); </script>
+            <script src="{% static 'Js/Grafico_Cualitativas.js' %}"></script>
+
+            <h1>Resultados de IPA en el rango de evaluación por Año</h1>
+
+            {% if IPA_Anual_rango %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Año</th>
+                    <th>Producción Científica</th>
+                    <th>Producción Artística</th>
+                    <th>Libros y Capítulos</th>
+                    <th>PIA</th>
+                    <th>IPA Anual</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in IPA_Anual_rango %}
+                    <tr>
+                        <td>{{ row.año }}</td>
+                        <td>{{ row.Produccion_Cientifica }}</td>
+                        <td>{{ row.Produccion_Artistica }}</td>
+                        <td>{{ row.Libros_Capitulos }}</td>
+                        <td>{{ row.PIA }}</td>
+                        <td>{{ row.IPA_Anual }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay datos disponibles para este rango de años.</p>
+    {% endif %}
+
+                <h1>Resultados de IPA por Carrera en el rango de Evaluación</h1>
+                <table id="IPA_Carrera_Rango">
+                    <thead>
+                        <tr>
+                            <th>Carrera</th>
+                            <th>Rango de Años</th>
+                            <th>Producción Científica</th>
+                            <th>Producción Artística</th>
+                            <th>Libros y Capítulos</th>
+                            <th>PIA</th>
+                            <th>IPA Anual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for fila in IPA_Carrera_rango %}
+                        <tr>
+                            <td>{{ fila.carrera }}</td>
+                            <td>{{ fila.rango_anos }}</td>
+                            <td>{{ fila.Produccion_Cientifica }}</td>
+                            <td>{{ fila.Produccion_Artistica }}</td>
+                            <td>{{ fila.Libros_Capitulos }}</td>
+                            <td>{{ fila.PIA }}</td>
+                            <td>{{ fila.IPA_Anual }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            
+
+        </div>
+
+        <div id="calculosCarreraSection" class="hidden">
+            <h1>Indicador 19. Producción académica</h1>
+            <h4>Cuartiles de Publicación datos totales</h4>
+            <ul>
+                <li>Primer cuartil (Q1): {{ cuartiles_total.Q1 }}</li>
+                <li>Segundo cuartil (Q2): {{ cuartiles_total.Q2 }}</li>
+                <li>Tercer cuartil (Q3): {{ cuartiles_total.Q3 }}</li>
+                <li>Tercer cuartil (Q4): {{ cuartiles_total.Q4 }}</li>
+            </ul>
+            
+            <h1>Resultados de IPA datos totales por Año</h1>
+
+                {% if IPA_Anual %}
+                <table id="IPA_Anual" class="display">
+                    <thead>
+                        <tr>
+                            <th>Año de evaluación</th>
+                            <th>Producción Científica (PC)</th>
+                            <th>Producción Académica (PA)</th>
+                            <th>Libros y Capítulos (LyCL)</th>
+                            <th>Propiedad Intelectual Aplicada (PIA)</th>
+                            <th>Índice de Propiedad Académica (IPA)</th>        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in IPA_Anual %}
+                            <tr>
+                                <td>{{ row.año }}</td>
+                                <td>{{ row.Produccion_Cientifica }}</td>
+                                <td>{{ row.Produccion_Artistica }}</td>
+                                <td>{{ row.Libros_Capitulos }}</td>
+                                <td>{{ row.PIA }}</td>
+                                <td>{{ row.IPA_Anual }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %} <p>No se encontraron datos</p> {% endif %}
+
+            <h1>Gráfico de IPA anual</h1>
+
+            <!-- Botón para descargar la imagen -->
+            <label for="añoInicio">Año Inicio:</label>
+            <input type="number" id="añoInicio" min="2000" max="2024" value="2000">
+            <label for="añoFin">Año Fin:</label>
+            <input type="number" id="añoFin" min="2000" max="2024" value="2024">
+
+            <!-- Botón para actualizar el gráfico -->
+            <button id="filtrarBtn">Filtrar</button>
+            <button id="descargarBtn">Descargar Imagen</button>
+
+            <canvas id="graficoGeneral" width="400" height="170"></canvas>
+            <script> const datosGraficoIPA = JSON.parse('{{ datos_grafico_json_IPA|safe }}'); </script>
+            <script src="{% static 'Js/Grafico_IPA.js' %}"></script>          
+
+            <h1>Resultados de IPA datos totales por Carrera</h1>
+            
+            <table id="IPA_Anual_Carrera">
+                <thead>
+                    <tr>
+                        <th>Carrera</th>
+                        <th>Producción Científica</th>
+                        <th>Producción Artística</th>
+                        <th>Libros y Capítulos</th>
+                        <th>PIA</th>
+                        <th>IPA por Carrera</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fila in IPA_Anual_Carrera %}
+                        <tr>
+                            <td>{{ fila.carrera }}</td>
+                            <td>{{ fila.Produccion_Cientifica }}</td>
+                            <td>{{ fila.Produccion_Artistica }}</td>
+                            <td>{{ fila.Libros_Capitulos }}</td>
+                            <td>{{ fila.PIA }}</td>
+                            <td>{{ fila.IPA_Anual }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <script src="{% static 'Js\TablasFormato.js' %}"></script>
+            
+        </div>
+        
+        <div id="Indicador20" class="hidden">
+            <h1>Indicador 20. Interdisciplinariedad para la articulación de las funciones sustantivas </h1>
+            <hr>
+            <h4>Tipo : Cualitativo</h4>
+            <h4>
+                Estándar:  <span style="color: #0071b7;">Se planifica y ejecuta programas o proyectos interdisciplinares
+                    que promueven la articulación de las funciones sustantivas, en el marco del
+                    currículo, líneas operativas y de investigación definidas, con el fin de asegurar
+                    procesos de aprendizaje colaborativos e integrales durante la formación del
+                    estudiante. La instancia competente con base en políticas y procedimientos
+                    definidos realiza seguimiento y evaluación de estos programas o proyectos
+                    ejecutados, cuyos resultados son considerados para las acciones de mejora
+                    continua de los procesos involucrados.</span>
+            </h4>
+            <h4>Periodo de evaluación:  Los periodos académicos concluidos en los últimos dos
+                años y seis meses previo al inicio del proceso de evaluación..</h4>
+            <hr>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

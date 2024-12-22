@@ -4,8 +4,9 @@ from django.urls import path
 from ProyectowebApp import views
 
 urlpatterns = [
-    path('IPA_Total/', views.IPA_Total, name='IPA_Total'),
+    path('Indicador3/', views.Indicador3, name='Indicador3'),
     path('VistaPrincipal/', views.VistaPrincipal, name='VistaPrincipal'),
+    path('Contribucion_Investigacion/', views.Contribucion_Investigacion, name='Contribucion_Investigacion'),
 ]
 
 # Esto permitirá que Django sirva archivos de medios durante el desarrollo (cuando DEBUG=True)

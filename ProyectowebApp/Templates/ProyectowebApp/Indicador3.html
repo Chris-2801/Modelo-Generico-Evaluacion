@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!-- Estilos y librerías -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+    <!-- Librerías de JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+    <!-- Incluir KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+
+    <!-- Graficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+    <body>
+        <div id="container">
+            <header>
+                <h1 class="ht">3. Criterio Investigación e innovación</h1>
+                <hr>
+                <div>
+                    <button id="toggle-button" class="toggle-button">☰</button>
+                    <button id="Introduccion" class="toggle-button"> 
+                </div>
+            </header>
+            <div id="sidebar" class="sidebar">
+                <ul>
+                    <li><a href="{% url 'VistaPrincipal' %}">Inicio</a></li>
+                    <li>
+                        <a href="{% url 'Indicador3' %}">3. Criterio Investigación e innovación</a>
+                        <ul>
+                            <li><a href="#">3.1 Subcriterio Gestión de la investigación e innovación</a> </li>
+                            <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                const toggleButton = document.getElementById("toggle-button");
+                const sidebar = document.getElementById("sidebar");
+                const container = document.getElementById("container");
+                toggleButton.addEventListener("click", function () {
+                sidebar.classList.toggle("active");
+                container.classList.toggle("sidebar-active");
+                });
+            });
+            </script>
+
+            <main>
+                <div id="IntroSection">
+
+                    <div style="text-align: center;">
+                        <img src="/static/Img/Seccion3.png" alt="Imagen centrada" style="width: 55%; height: auto;">
+                    </div>
+
+                    <h3 class="justificado">
+                        Las actividades de investigación e innovación la ejecutan diversos
+                        actores como las universidades y escuelas politécnicas, sus carreras y
+                        programas, institutos, centros de investigación, unidades, grupos, centros de
+                        transferencia de tecnología, profesores, investigadores y estudiantes, a través
+                        de mecanismos democráticos, arbitrados y transparentes. Los resultados de
+                        estas actividades son difundidos y divulgados para garantizar el uso social de
+                        los mismos y su aprovechamiento en la generación de nuevos conocimientos y
+                        productos, procesos o servicios.
+                    </h3>
+                    
+                    <h3 class="justificado">
+                        Estas actividades están reguladas por normativas, políticas, dominios,
+                        líneas y sub líneas de investigación establecidas por las IES, sus carreras
+                        y/o programas. Se desarrollan con base con recursos propios y/o externos
+                        a través de programas o proyectos que se ejecutan en el marco del trabajo
+                        colaborativo entre profesores, estudiantes y los actores externos a las carreras,
+                        es decir la sociedad. Pueden desarrollarse también mediante actividades
+                        arbitradas, que buscan la transparencia en los resultados obtenidos, los
+                        mismos que son divulgados para garantizar la transferencia de conocimiento
+                        y su aprovechamiento en la generación de nuevos productos, procesos o
+                        servicios. Además, la investigación e innovación buscan aportar con soluciones
+                        sostenibles a las problemáticas encontradas en el entorno en el cual se
+                        desarrolla la carrera, por medio de programas o proyectos que se generan
+                        desde la academia y los resultados benefician a la sociedad ya sea desde el
+                        punto de vista científico con la generación de nuevo conocimiento o desde
+                        el punto de vista práctico con el aporte de ideas que solucionen conflictos o
+                        resuelvan problemas de la comunidad. 
+                    </h3>            
+                </div>
+            
+                <footer class="footer">
+                    <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+                </footer>
+            </div>
+        </main>
+    </body>
+</html>
