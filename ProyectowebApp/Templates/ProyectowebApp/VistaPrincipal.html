@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles_VistaP.css' %}">
-    <title>Dribbble Clone</title>
+    <title>Evaluación del entorno de aprendizaje</title>
 
 </head>
 <body>
@@ -19,18 +19,21 @@
         <a href="#">Sign Up</a>
     </nav>
 </header>
+¿<nav class="navbar">
+    <ul class="navbar-menu">
+        <li><a href="#inicio">Curriculo</a></li>
+        <li><a href="#portafolio">Docencia</a></li>
+        <li><a href="{% url 'Indicador3' %}">Investigación e Innovación</a></li>
+        <li><a href="#usuario">Vinculación con la Sociedad</a></li>
+        <li><a href="#mas">Funciones estratégicas y de soporte</a></li>
+    </ul>
+</nav>
+
 
 <section class="main-banner">
 
     <h1>Modelo genérico para la evaluación del entorno de aprendizaje de carreras de grado</h1>
 
-    <div class="categories">
-        <a href="#">1. Curriculo</a>
-        <a href="#">2. Docencia</a>
-        <a href="{% url 'Indicador3' %}">3. Investigación e Innovación</a>
-        <a href="#">4. Vinculación con la Sociedad</a>
-        <a href="#">5. Funciones estratégicas y de soporte</a>
-    </div>
     
     <p>Millions of designers and agencies showcase their work here. Discover, learn, and get inspired.</p>
     <div class="search-bar">

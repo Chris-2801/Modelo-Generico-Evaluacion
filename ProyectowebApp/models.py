@@ -6,6 +6,7 @@ from collections import defaultdict
 import numpy as np
 
 class Personal_Academico(models.Model):
+    OPCIONES_FACULTAD = [('Geología', 'Geología'), ('Minas', 'Minas'), ('Petróleos', 'Petróleos'), ('Ambiental', 'Ambiental')]
     ci = models.CharField(max_length=10,unique=True, primary_key=True, default="",  validators=[
             RegexValidator(
                 regex='^\d{10}$',  # Exactamente 10 dígitos numéricos
@@ -17,6 +18,7 @@ class Personal_Academico(models.Model):
     Segundo_nombre = models.CharField(max_length=100, default="")
     primer_apellido = models.CharField(max_length=100, default="")
     segundo_apellido = models.CharField(max_length=100, default="")
+    carrera = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
     fecha_nacimiento = models.DateField(default=date(2000, 1, 1))
     genero = models.CharField(max_length=100, default="")
     estado_civil = models.CharField(
@@ -33,13 +35,20 @@ class Personal_Academico(models.Model):
         choices=[('Pregrado', 'Pregrado'), ('Maestría', 'Maestría'), ('Doctorado', 'Doctorado')],
         default='Pregrado'
     )
+    nombramiento = models.CharField(
+        max_length=50,
+        choices=[('Nombramiento definitivo', 'Nombramiento definitivo'), ('Nombramiento provisional', 'Nombramiento provisional'),
+                  ('Contrato', 'Contrato')],
+        default='Pregrado'
+    )
     tipo_contrato = models.CharField(
         max_length=20,
         choices=[('Tiempo Completo', 'Tiempo Completo'), ('Tiempo Parcial', 'Tiempo Parcial')],
         default='Tiempo total'
     )
-    def __str__(self):
-        return f"{self.Primer_nombre} {self.Primer_nombre} - {self.ci}"
+
+    class Meta:
+        verbose_name_plural = "Lista Personal Academico"
 
 class Documento(models.Model):
     OPCIONES_TIPO = [
@@ -154,6 +163,8 @@ class Documento(models.Model):
                 'nombre_evento_o_compendio': 'Este campo es obligatorio para la opción seleccionada.'
             })
 
+    class Meta:
+        verbose_name_plural = "Fuentes de Información: Indicador 19"
 
     def __str__(self):
         return f"{self.titulo} {self.ci1} - {self.Año_Base_datos}"
@@ -213,6 +224,8 @@ class Indicador20(models.Model):
         null=True,
         blank=True
     )
+    class Meta:
+        verbose_name_plural = "Fuentes de Información: Indicador 20"
 
 def Produccion_Cientifica(anio_inicio, anio_fin):
     

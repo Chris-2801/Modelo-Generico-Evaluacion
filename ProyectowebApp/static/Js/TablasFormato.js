@@ -122,3 +122,4 @@ function initializeTableWithFilters(tableId, withExportButtons = true, withColum
     initializeTableWithFilters('#IPA_Anual');
     initializeTableWithFilters('#IPA_Anual_Carrera');
     initializeTableWithFilters('#IPA_Carrera_Rango');
+    initializeTableWithFilters('#documentos_table_Indicador20', false, false);

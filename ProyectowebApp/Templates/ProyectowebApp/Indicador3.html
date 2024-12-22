@@ -38,14 +38,20 @@
             </header>
             <div id="sidebar" class="sidebar">
                 <ul>
-                    <li><a href="{% url 'VistaPrincipal' %}">Inicio</a></li>
                     <li>
+                        <a href="{% url 'VistaPrincipal' %}">
+                            <img src="/static/Img/home.png"  class="button-icon"> Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <hr>
                         <a href="{% url 'Indicador3' %}">3. Criterio Investigación e innovación</a>
                         <ul>
                             <li><a href="#">3.1 Subcriterio Gestión de la investigación e innovación</a> </li>
                             <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a>
                             </li>
                         </ul>
+                        <hr>
                     </li>
                     <li><a href="#">Acerca de</a></li>
                     <li><a href="#">Contacto</a></li>

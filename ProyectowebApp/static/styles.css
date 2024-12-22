@@ -1,36 +1,32 @@
 /* Estilo general de la página */
-body {font-family: 'Arial', sans-serif;background-color: #f4f7fa;margin: 0; padding: 0;box-sizing: border-box;}
+html, body {font-family: 'Arial', sans-serif;background-color: #f4f7fa;margin: 0; padding: 0;overflow-x: hidden;}
 h1, h2, h3 {text-align: center;color: #434343;margin-bottom: 20px;}
 .ht {font-family: 'Arial'; font-size:2.5rem; text-align: center; color:white}
 .ht1 {font-family: 'Arial'; font-size:1.5rem; text-align: center; color:black}
 .httitle {font-family: 'Arial'; font-size:1.3rem; text-align: center; color:white}
 /* Contenedor principal */
-#container {transition: margin-left 0.3s ease;padding-bottom: 50px;}
+#container {transition: margin-left 0.3s ease;padding-bottom: 20px;width: 100%;}
 /* Estilo del contenido principal */
 .content {flex-grow: 1;padding: 20px;text-align: center;}
 .content h1 {font-size: 2rem;margin-bottom: 20px;}
 
 .justificado {text-align: justify;}
-
+main {margin: 30px;}
 
 /********************************************************* Estilo de la cabecera **************************************************/
-/* Estilos iniciales */
-body {margin: 0;font-family: Arial, sans-serif;}
+header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;z-index: 1;width: 100vw;}
 
-header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;z-index: 1;}
-
-#sidebar {position: fixed;top: 0;left: -250px;width: 250px;height: 100%;background-color: #111;transition: left 0.3s ease;z-index: 2; }
+#sidebar {position: fixed;top: 0;left: -370px;width: 370px;height: 100%;background-color: #424242;transition: left 0.3s ease;z-index: 2; }
 #sidebar.active {left: 0;}
-#container.sidebar-active {margin-left: 250px;}
+#container.sidebar-active {margin-left: 370px;}
 #sidebar ul ul {display: none;padding-left: 20px; }
 #sidebar ul li:hover > ul {display: block;}
 .sidebar ul {list-style: none;padding: 0;}
 .sidebar ul li {margin: 20px 0;}
-.sidebar ul li a {color: white;text-decoration: none;display: block; padding: 10px;background-color: #111;border-radius: 5px;}
-.sidebar ul li a:hover {background-color: #111; }
-.sidebar ul li ul li a {background-color: #111; }
-.sidebar ul li ul li a:hover {background-color: #111;}
-main {margin: 20px;}
+.sidebar ul li a {color: white;text-decoration: none;display: block; padding: 10px;background-color:#424242;border-radius: 5px;font-size: 1.2em;}
+.sidebar ul li a:hover {background-color: #424242; }
+.sidebar ul li ul li a {background-color: #424242; }
+.sidebar ul li ul li a:hover {background-color: #424242;}
 
 /***************************************************** Estilo para los botones de la página *********************************************/
 button {margin: 5px;padding: 10px 20px;background-color: #007BFF;color: white;border: none;border-radius: 4px;cursor: pointer;width: auto;}
@@ -55,7 +51,7 @@ select:focus {border-color: #007BFF;outline: none;}
 /* Ajusta las tablas para que funcionen con el desplazamiento */
 table {width: 100%; min-width: 1000px; border-collapse: collapse;margin: 20px 0;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);background-color: #fff;border-radius: 8px;}
 th, td {padding: 12px;text-align: center;border-bottom: 1px solid #ddd;}
-th {background-color: #007BFF;color: white;position: sticky;top: 0;z-index: 1;}
+th {background-color: #1a237e;color: white;position: sticky;top: 0;z-index: 1;}
 tr:hover {background-color: #f1f1f1;}
 
 /* Paginación */
@@ -63,16 +59,16 @@ tr:hover {background-color: #f1f1f1;}
 
 /* Contenedor para los filtros de búsqueda */
 .search-container {display: flex;flex-wrap: wrap;justify-content: space-between;margin: 20px 0;}
-.search-container input, .search-container select {margin-right: 10px;width: 150px;padding: 8px;}
+.search-container input, .search-container select {width: 150px;padding: 8px;}
 #formulas-container {display: flex;justify-content: flex-start;gap: 20px;width: 100%;flex-wrap: wrap;}
 #formulas-container > div {flex: 0 0 auto;min-width: 180px;text-align: center;padding: 10px;border: 10px solid #ccc;}
 /* Estilos de los filtros en las tablas */
 .filter-container {display: flex;flex-wrap: wrap;justify-content: space-between;margin-bottom: 20px;}
-.filter-container select {width: 150px;padding: 8px;margin-right: 10px;font-size: 14px;}
+.filter-container select {width: 150px;padding: 8px;font-size: 14px;}
 .hidden {display: none;}
 
 /* Estilos de los enlaces */
-a {color: #007BFF;text-decoration: none;} a:hover {text-decoration: underline;}
+a {color: #1a237e;text-decoration: none} a:hover {text-decoration: underline;}
 
 .footer {background-image: linear-gradient(45deg, #000000, #434343);color: white;text-align: center;padding: 20px;
     position: relative; width: 100%;font-size: 1.2rem;z-index: 1;margin-top: 50px;}
