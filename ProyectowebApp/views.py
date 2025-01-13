@@ -126,10 +126,6 @@ def Contribucion_Investigacion(request):
 
 def VistaPrincipal(request):
     return render(request, "ProyectowebApp/VistaPrincipal.html")
-    
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
 
 def InicioSesion(request):
     if request.method == 'POST':
