@@ -126,9 +126,7 @@ DEBUG = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles'),
-    STATIC_FILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Agregar la carpeta 'static' de tu app ProyectowebApp
 STATICFILES_DIRS = [
