@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ProyectowebApp.models import (
     Personal_Academico, Documento,Indicador20)
 from ProyectowebApp.models import (Produccion_Cientifica, Produccion_Artistica,
@@ -8,7 +8,6 @@ from ProyectowebApp.models import (Produccion_Cientifica, Produccion_Artistica,
 
 from ProyectowebApp.models import graficar_documentos, graficar_ipa
 import json 
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -125,7 +124,7 @@ def Contribucion_Investigacion(request):
     })
 
 def VistaPrincipal(request):
-    return render(request, "ProyectowebApp/VistaPrincipal.html")
+    return render(request, "ProyectowebApp\Templates\ProyectowebApp\VistaPrincipal.html")
 
 def InicioSesion(request):
     if request.method == 'POST':
