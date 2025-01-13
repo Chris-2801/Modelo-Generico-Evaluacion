@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ProyectowebApp',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -69,6 +70,7 @@ TEMPLATES = [
     },
 ]
 
+SITE_ID = 1
 
 WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 

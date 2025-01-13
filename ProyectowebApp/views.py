@@ -8,6 +8,9 @@ from ProyectowebApp.models import (Produccion_Cientifica, Produccion_Artistica,
 
 from ProyectowebApp.models import graficar_documentos, graficar_ipa
 import json 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 
 def Indicador3(request):
     return render(request, 'ProyectowebApp/Indicador3.html')
@@ -124,3 +127,23 @@ def Contribucion_Investigacion(request):
 def VistaPrincipal(request):
     return render(request, "ProyectowebApp/VistaPrincipal.html")
     
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+
+def InicioSesion(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/admin/')  # Redirige al administrador de Django
+            else:
+                form.add_error(None, 'Credenciales inválidas')
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, "ProyectowebApp/InicioSesion.html", {'form': form})

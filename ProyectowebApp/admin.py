@@ -1,5 +1,14 @@
 from django.contrib import admin
+from django.contrib.admin import AdminSite
+from django.contrib.staticfiles.storage import staticfiles_storage
 from ProyectowebApp.models import Personal_Academico, Documento, Indicador20
+
+admin.site.site_header = ("Universidad Central del Ecuador")  # Título en la parte superior
+admin.site.site_title = ("Registro")  # Título en la pestaña del navegador
+admin.site.index_title = ("Registro")  # Título en la página de inicio del admin
+
+from django.templatetags.static import static
+from django.utils.html import format_html
 
 @admin.register(Personal_Academico)
 class PersonalAcedemicoAdmin(admin.ModelAdmin):

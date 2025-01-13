@@ -46,7 +46,7 @@ $(document).ready(function () {
     
 function initializeTableWithFilters(tableId, withExportButtons = true, withColumnFilters = true) {
     var options = {
-        pageLength: 10,
+        pageLength: 5,
         dom: 'Bfrtip',  // Agregar el área de los botones (B = Buttons)
         buttons: withExportButtons ? [
             {

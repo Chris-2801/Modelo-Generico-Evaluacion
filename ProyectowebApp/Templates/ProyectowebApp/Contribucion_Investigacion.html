@@ -161,8 +161,9 @@
         <div id="tablasSection" class="hidden">        
         
             {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
-
-            <h3>Lista de Personal Académico</h3>
+            <hr>
+            <h1>Lista de Personal Académico</h1>
+            <hr>
             <table id="personal_academico_table" class="display">
                 <thead>
                     <tr>
@@ -205,8 +206,10 @@
                     {% endfor %}
                 </tbody>
             </table>
-
-            <h3>Lista de Documentos</h3>
+            <hr>
+            <h1>Lista de Documentos</h1>
+            <hr>
+              
             <table id="documento_table" class="display">
                 <thead>
                     <tr>
@@ -263,6 +266,29 @@
             </table>
 
             <h3>Fuentes de Información: Indicador 19</h3>
+
+            <details>
+                <summary>Ver detalles de los elementos reportados</summary>
+                <ol style="list-style-type: lower-alpha;">
+                  <li>Personal académico de la carrera reportado en el SIIES.</li>
+                  <li>Artículos publicados en revistas de las bases de datos Scopus o Web of Science reportados en el SIIES.</li>
+                  <li>Artículos publicados en revistas de las bases de datos regionales reportados en el SIIES.</li>
+                  <li>Actas de congresos indexados (Proceedings) reportados en el SIIES.</li>
+                  <li>Artículo en formato PDF debiendo contener: portada de la revista, código ISSN, índice del artículo donde conste el nombre del número de capítulos que contiene el libro, nombre del profesor como autor o coautor, filiación, año de publicación, consejo editorial o auspicio institucional, código ISBN.</li>
+                  <li>Documentación o medios que evidencien los procesos de revisión por pares del libro o capítulo del libro reportado.</li>
+                  <li>Documentos que evidencien la evaluación de la obra relevante por parte de curadores o expertos anónimos y externos a la institución donde trabaja el autor.</li>
+                  <li>Documentos que evidencien que la obra relevante fue expuesta o presentada en eventos, exposiciones nacionales o internacionales, o haber ganado premios dentro o fuera del país.</li>
+                  <li>Documentación o medios que evidencien la propiedad intelectual reportada.</li>
+                  <li>Proyectos de investigación, vinculación o de producción al cual pertenece el producto de propiedad intelectual.</li>
+                  <li>Registro de propiedad intelectual en el SENADI.</li>
+                  <li>Listado de las líneas de investigación de la carrera reportado en el SIIES.</li>
+                  <li>Listado de los programas, proyectos de investigación y vinculación de la carrera.</li>
+                  <li>Libros, capítulos de libro publicados en el periodo de evaluación reportados en el SIIES.</li>
+                  <li>Libros, capítulos de libro en formato PDF debiendo contener al menos: portada y contra portada, índice del libro donde conste el profesor/investigador, filiación, fecha de publicación.</li>
+                </ol>
+              </details>
+              
+
             <table id="documentos_adicionales_table" class="display">
                 <thead>
                     <tr>
@@ -317,6 +343,22 @@
             </table>
 
             <h3>Fuentes de Información: Indicador 20</h3>
+
+            <details>
+                <summary>Ver detalles de los programas o proyectos interdisciplinares</summary>
+                <ol style="list-style-type: lower-alpha;">
+                  <li>Documentación que evidencie la planificación y ejecución de los programas o proyectos interdisciplinares que promueven la articulación de las funciones sustantivas.</li>
+                  <li>Políticas o procedimientos definidos para la planificación, ejecución y evaluación de los programas o proyectos interdisciplinares.</li>
+                  <li>Listado de programas o proyectos interdisciplinares, con el detalle de los participantes involucrados.</li>
+                  <li>Programas o proyectos interdisciplinares ejecutados por la carrera durante el periodo de evaluación.</li>
+                  <li>Syllabus de las asignaturas consideradas en los programas o proyectos interdisciplinares que promueven la articulación de las funciones sustantivas.</li>
+                  <li>Documentación (Informes, expedientes, memorias, etc.) que evidencien los productos o resultados obtenidos en los proyectos interdisciplinares ejecutados.</li>
+                  <li>Documentación que evidencie el análisis de la articulación de las funciones sustantivas a través de los programas o proyectos interdisciplinares.</li>
+                  <li>Documentación o medios que evidencien la difusión de los resultados de los programas o proyectos interdisciplinares a los beneficiarios internos o externos.</li>
+                  <li>Documentación que evidencie las acciones de mejora en la gestión de los programas o proyectos interdisciplinares que promueven la articulación de las funciones sustantivas, con base en los resultados de su seguimiento y evaluación; así como, la instancia competente dentro de la carrera responsable de estos procesos.</li>
+                </ol>
+              </details>
+
             <table id="documentos_table_Indicador20" class="display">
                 <thead>
                     <tr>
@@ -724,9 +766,17 @@
         </div>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
-    </footer>
+    <footer class="top-footer">
+        <div class="top-footer-content">
+          <p>Información adicional aquí, como enlaces rápidos o redes sociales</p>
+        </div>
+      </footer>
+      
+      <footer class="footer">
+        <div class="footer-content">
+          <p>© 2025 Mi Aplicación Web</p>
+        </div>
+      </footer>
 
 </body>
 </html>
