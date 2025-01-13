@@ -63,8 +63,10 @@ ROOT_URLCONF = 'ProyectoWeb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], 
-        'APP_DIRS': True,  
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),  # Asegúrate de que Django busque en el directorio templates
+        ],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
