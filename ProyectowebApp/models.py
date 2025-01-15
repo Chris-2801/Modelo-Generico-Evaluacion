@@ -22,7 +22,7 @@ class Personal_Academico(models.Model):
     fecha_nacimiento = models.DateField(default=date(2000, 1, 1))
     genero = models.CharField(max_length=100, default="")
     estado_civil = models.CharField(
-        max_length=20,
+        max_length=50,
         choices=[('Soltero/a', 'Soltero/a'), ('Casado/a', 'Casado/a'), ('Viudo/a', 'Viudo/a'), 
                  ('Divorciado/a', 'Divorciado/a'), ('Unión de Hecho', 'Unión de Hecho')],
         default='Soltero/a'
@@ -151,17 +151,15 @@ class Documento(models.Model):
 
     def clean(self):
         super().clean()
-        if self.nombre in ['Artculos Scopus o Web of Science', 'Artículos bases de datos regionales'] and self.nombre_revista is None:
+        if self.nombre in ['Artculos Scopus o Web of Science', 'Artículos bases de datos regionales'] and not self.nombre_revista:
             raise ValidationError({
                 'nombre_revista': 'Este campo es obligatorio para la opción seleccionada.'
             })
-        
-    def clean(self):
-        super().clean()
-        if self.nombre in ['Proceedings'] and self.nombre_evento_o_compendio is None:
+        if self.nombre == 'Proceedings' and not self.nombre_evento_o_compendio:
             raise ValidationError({
                 'nombre_evento_o_compendio': 'Este campo es obligatorio para la opción seleccionada.'
             })
+
 
     class Meta:
         verbose_name_plural = "Fuentes de Información: Indicador 19"

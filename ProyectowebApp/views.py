@@ -124,7 +124,7 @@ def Contribucion_Investigacion(request):
     })
 
 def VistaPrincipal(request):
-    return render(request, "ProyectowebApp\Templates\ProyectowebApp\VistaPrincipal.html")
+    return render(request, 'ProyectowebApp/VistaPrincipal.html')
 
 def InicioSesion(request):
     if request.method == 'POST':

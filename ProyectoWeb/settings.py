@@ -82,6 +82,16 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ProyectoWeb',
+        'USER': 'covalencia',
+        'PASSWORD': 'UTGKj384',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}'''
 
 DATABASES = {
     'default': {
