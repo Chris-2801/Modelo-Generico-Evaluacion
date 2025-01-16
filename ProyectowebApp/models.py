@@ -18,7 +18,7 @@ class Personal_Academico(models.Model):
     Segundo_nombre = models.CharField(max_length=100, default="")
     primer_apellido = models.CharField(max_length=100, default="")
     segundo_apellido = models.CharField(max_length=100, default="")
-    carrera = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
+    carrera_personal = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
     fecha_nacimiento = models.DateField(default=date(2000, 1, 1))
     genero = models.CharField(max_length=100, default="")
     estado_civil = models.CharField(

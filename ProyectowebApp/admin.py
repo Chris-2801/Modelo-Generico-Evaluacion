@@ -12,11 +12,11 @@ from django.utils.html import format_html
 
 @admin.register(Personal_Academico)
 class PersonalAcedemicoAdmin(admin.ModelAdmin):
-    CAMPOS_COMUNES = ('ci','Primer_nombre', 'primer_apellido','carrera','fecha_nacimiento','correo_institucional',
+    CAMPOS_COMUNES = ('ci','Primer_nombre', 'primer_apellido','carrera_personal','fecha_nacimiento','correo_institucional',
                     'telefono_contacto', 'asignaturas_impartidas','programa_educativo','nombramiento','tipo_contrato')
     list_display = CAMPOS_COMUNES  
     search_fields = CAMPOS_COMUNES
-    list_filter = ('carrera','programa_educativo','nombramiento','tipo_contrato')
+    list_filter = ('carrera_personal','programa_educativo','nombramiento','tipo_contrato')
 
 @admin.register(Documento)
 class DocumentoAdmin(admin.ModelAdmin):

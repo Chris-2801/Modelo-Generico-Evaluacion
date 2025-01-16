@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ProyectoWeb',
-        'USER': 'covalencia',
+        'USER': 'postgres',
         'PASSWORD': 'UTGKj384',
         'HOST': 'localhost',
         'PORT': '5432',
@@ -95,10 +95,21 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bronlrovaunphzkf2c9l',
+        'USER': 'u4b8jxfhjnsjbu72jhbd',
+        'PASSWORD': 'NGHzfFYQtyC93FI6ixLhwtGOLvNlmR',
+        'HOST': 'bronlrovaunphzkf2c9l-postgresql.services.clever-cloud.com',
+        'PORT': '50013',
+    }
+}
+
+'''DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+}'''
 
 
 # Password validation
