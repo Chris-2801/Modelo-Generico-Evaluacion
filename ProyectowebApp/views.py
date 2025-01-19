@@ -125,7 +125,6 @@ def Contribucion_Investigacion(request):
     })
 
 def VistaPrincipal(request):
-    loader.get_template('ProyectowebApp/VistaPrincipal.html')
     return render(request, 'ProyectowebApp/VistaPrincipal.html')
 
 def InicioSesion(request):
