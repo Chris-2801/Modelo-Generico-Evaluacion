@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template import loader
 from ProyectowebApp.models import (
     Personal_Academico, Documento,Indicador20)
 from ProyectowebApp.models import (Produccion_Cientifica, Produccion_Artistica,
@@ -124,6 +125,7 @@ def Contribucion_Investigacion(request):
     })
 
 def VistaPrincipal(request):
+    VistaPrincipal = loader.get_templte('ProyectowebApp/VistaPrincipal.html')
     return render(request, 'ProyectowebApp/VistaPrincipal.html')
 
 def InicioSesion(request):
