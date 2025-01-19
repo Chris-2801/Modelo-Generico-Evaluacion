@@ -95,7 +95,7 @@ def Contribucion_Investigacion(request):
         datos_grafico_json_IPA = json.dumps({'error': f'Error al obtener los datos de IPA: {str(e)}'})
 
     # Retornar la respuesta con todos los datos
-    return render(request, "ProyectowebApp\Contribucion_Investigacion.html", {
+    return render(request, "ProyectowebApp/Contribucion_Investigacion.html", {
         'total_registros': total_registros,
         'registros': registros,
         'documentos': documentos,
