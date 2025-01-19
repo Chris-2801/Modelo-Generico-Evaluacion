@@ -171,7 +171,7 @@ class Indicador20(models.Model):
     OPCIONES_FuncSustantivas = [('Docencia', 'Docencia'), ('Investigación e Innovación', 'Investigación e Innovación'), ('Vinculación con la Sociedad', 'Vinculación con la Sociedad')]
     OPCIONES_FACULTAD = [('Geología', 'Geología'), ('Minas', 'Minas'), ('Petróleos', 'Petróleos'), ('Ambiental', 'Ambiental')]
     Funciones_Sustantivas = models.CharField(max_length=50, choices=OPCIONES_FuncSustantivas, verbose_name="Funciones Sustantivas")
-    carrera = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
+    carrera_Indicador20 = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
     nombre = models.CharField(max_length=300, default="", verbose_name='Nombre del Proyecto o Programa')
     autores = models.CharField(max_length=300, default="", verbose_name='Autores del Proyecto o Programa')
     Planificaciopn_Proyectos_Programas = models.FileField(

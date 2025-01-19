@@ -7,9 +7,6 @@ admin.site.site_header = ("Universidad Central del Ecuador")  # Título en la pa
 admin.site.site_title = ("Registro")  # Título en la pestaña del navegador
 admin.site.index_title = ("Registro")  # Título en la página de inicio del admin
 
-from django.templatetags.static import static
-from django.utils.html import format_html
-
 @admin.register(Personal_Academico)
 class PersonalAcedemicoAdmin(admin.ModelAdmin):
     CAMPOS_COMUNES = ('ci','Primer_nombre', 'primer_apellido','carrera_personal','fecha_nacimiento','correo_institucional',
@@ -26,6 +23,6 @@ class DocumentoAdmin(admin.ModelAdmin):
 
 @admin.register(Indicador20)
 class Indicador20Admin(admin.ModelAdmin):
-    list_display = ('Funciones_Sustantivas','nombre', 'carrera','autores','Productos_Resultados')
-    search_fields = ('Funciones_Sustantivas','nombre', 'carrera','autores','Productos_Resultados')
-    list_filter = ('Funciones_Sustantivas', 'carrera')
+    list_display = ('Funciones_Sustantivas','nombre', 'carrera_Indicador20','autores','Productos_Resultados')
+    search_fields = ('Funciones_Sustantivas','nombre', 'carrera_Indicador20','autores','Productos_Resultados')
+    list_filter = ('Funciones_Sustantivas', 'carrera_Indicador20')

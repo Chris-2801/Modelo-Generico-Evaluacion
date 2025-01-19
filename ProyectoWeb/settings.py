@@ -82,7 +82,7 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ProyectoWeb',
@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}'''
+}
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bronlrovaunphzkf2c9l',
@@ -101,8 +101,9 @@ DATABASES = {
         'PASSWORD': 'NGHzfFYQtyC93FI6ixLhwtGOLvNlmR',
         'HOST': 'bronlrovaunphzkf2c9l-postgresql.services.clever-cloud.com',
         'PORT': '50013',
+        'CONN_MAX_AGE': 60,  # Mantener conexiones abiertas por 60 segundos
     }
-}
+}'''
 
 '''DATABASES = {
     'default': {
