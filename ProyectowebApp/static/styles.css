@@ -1,14 +1,16 @@
 /* Estilo general de la página */
 html, body {font-family: 'Arial', sans-serif;background-color: #f4f7fa;margin: 0; padding: 0;overflow-x: hidden;}
-h1, h2, h3 {text-align: center;color: #434343;margin-bottom: 20px;}
-.ht {font-family: 'Arial'; font-size:2.5rem; text-align: center; color:white}
-.ht1 {font-family: 'Arial'; font-size:1.5rem; text-align: center; color:black}
-.httitle {font-family: 'Arial'; font-size:1.3rem; text-align: center; color:white}
+h1, h2, h3 {text-align: center;color: #434343;margin-bottom: 14px;}
+h4 {color: #434343;margin-bottom: 14px;font-size: 14px;}
+.ht {font-family: 'Arial'; font-size:28px; text-align: center; color:white}
+.ht1 {font-family: 'Arial'; font-size:14px; text-align: center; color:black}
+.ht2 {font-family: 'Arial'; font-size:24px; text-align: center; color:#434343}
+.httitle {font-family: 'Arial'; font-size:16px; text-align: center; color:white}
 /* Contenedor principal */
 #container {transition: margin-left 0.3s ease;padding-bottom: 0px;width: 100%;}
 /* Estilo del contenido principal */
-.content {flex-grow: 1;padding: 20px;text-align: center;}
-.content h1 {font-size: 2rem;margin-bottom: 20px;}
+.content {flex-grow: 1;padding: 14px;text-align: center;}
+.content h1 {font-size: 14px;margin-bottom: 20px;}
 
 .justificado {text-align: justify;}
 main {margin: 30px;}
@@ -16,43 +18,49 @@ main {margin: 30px;}
 /********************************************************* Estilo de la cabecera **************************************************/
 header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;z-index: 1;width: 100vw;}
 
-#sidebar {position: fixed;top: 0;left: -370px;width: 370px;height: 100%;background-color: #424242;transition: left 0.3s ease;z-index: 2; }
+#sidebar {position: fixed;top: 0;left: -250px;width: 250px;height: 100%;background-color: #424242;transition: left 0.3s ease;z-index: 2; }
 #sidebar.active {left: 0;}
-#container.sidebar-active {margin-left: 370px;}
+#container.sidebar-active {margin-left: 250px;}
 #sidebar ul ul {display: none;padding-left: 20px; }
 #sidebar ul li:hover > ul {display: block;}
 .sidebar ul {list-style: none;padding: 0;}
 .sidebar ul li {margin: 20px 0;}
-.sidebar ul li a {color: white;text-decoration: none;display: block; padding: 10px;background-color:#424242;border-radius: 5px;font-size: 1.2em;}
+.sidebar ul li a {color: white;text-decoration: none;display: block; padding: 10px;background-color:#424242;border-radius: 5px;font-size: 14px;}
 .sidebar ul li a:hover {background-color: #424242; }
 .sidebar ul li ul li a {background-color: #424242; }
 .sidebar ul li ul li a:hover {background-color: #424242;}
 
 /***************************************************** Estilo para los botones de la página *********************************************/
-button {margin: 5px;padding: 10px 20px;background-color: #007BFF;color: white;border: none;border-radius: 4px;cursor: pointer;width: auto;}
+button {margin: 3px;padding: 1px 2px;background-color: #007BFF;color: white;border: none;border-radius: 2px;cursor: pointer;width: auto;}
 button:hover {background-color: #0056b3;}
 
-.toggle-button {background-color: #1f1f3e; color: white; border: none; padding: 10px 20px; margin: 0 5px; cursor: pointer; font-size: 20px;} 
-.toggle-button:hover {background-color: #1f1f3e;font-size: 20px;}
+.toggle-button {background-color: #1f1f3e; color: white; border: none; padding: 1px 2px; margin: 0 5px; cursor: pointer; font-size: 14px;} 
+.toggle-button:hover {background-color: #1f1f3e;font-size: 15px;}
 
 .toggle-button:active {background-color: #007BFF; color: white; border-color: #0056b3;}
 .toggle-button:focus {outline: none; box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);}
 /* Símbolo debajo del texto */
-.button-icon {width: 1.3em;  height: 1.3em;margin-right: 8px; vertical-align: middle;filter: invert(1);}
+.button-icon {width: 1.1em;  height: 1.1em;margin-right: 5px; vertical-align: middle;filter: invert(1);}
 
 /************************************************************* Estilo para las tablas **************************************************/
-/* Estilo de los filtros */
 select {width: 100%;padding: 10px;margin-bottom: 10px;border-radius: 4px;border: 1px solid #ccc;background-color: #f9f9f9;transition: border 0.3s ease;}
 select:focus {border-color: #007BFF;outline: none;}
 
 /* Habilitar desplazamiento horizontal solo en las tablas */
-.dataTables_wrapper {overflow-x: auto; width: 100%; margin: 0 auto;}
+.dataTables_wrapper {overflow-x: auto;width: 100%;margin: 0 auto;}
 
-/* Ajusta las tablas para que funcionen con el desplazamiento */
-table {width: 100%; min-width: 1000px; border-collapse: collapse;margin: 20px 0;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);background-color: #fff;border-radius: 8px;}
-th, td {padding: 12px;text-align: center;border-bottom: 1px solid #ddd;}
-th {background-color:rgb(192, 192, 192);color: black;position: sticky;top: 0;z-index: 1;}
-tr:hover {background-color: white;}
+/* Ajustar las tablas */
+table {width: 100%;border-collapse: collapse;margin: 20px 0;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);background-color: #fff;
+  border-radius: 8px;table-layout: fixed; /* Fija el ancho de las columnas */}
+
+/* Forzar ancho fijo para las columnas */ /* Ancho fijo de 100px */
+th, td {padding: 12px;text-align: center;border-bottom: 1px solid #ddd;width: 150px !important; white-space: normal;
+  overflow: hidden; word-wrap: break-word; word-break: break-word; font-size: 14px;}
+
+#documento_table_Calculos th, #documento_table_Calculos td {width: 100px !important;  /* Ancho menor para todas las columnas */}
+/* Estilo para las cabeceras */
+th {background-color: rgb(192, 192, 192);color: black;position: sticky;top: 0;z-index: 1;font-size: 14px;}
+tr:hover {background-color: white;} /* Resaltar filas al pasar el mouse */
 
 /* Paginación */
 .pagination {display: flex;justify-content: center;margin-top: 20px;}
@@ -80,7 +88,7 @@ a {color: #1a237e;text-decoration: none} a:hover {text-decoration: underline;}
     left: 0;width: 100%;font-size: 0.9rem;z-index: 1;}
   .footer p {margin: 0;}
 
-details {background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 5px;}
+details {background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px;}
 summary {font-weight: bold;cursor: pointer;}
 summary:hover {color: #007bff; }
 

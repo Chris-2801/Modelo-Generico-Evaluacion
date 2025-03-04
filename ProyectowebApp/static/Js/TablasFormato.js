@@ -47,44 +47,50 @@ $(document).ready(function () {
 function initializeTableWithFilters(tableId, withExportButtons = true, withColumnFilters = true) {
     var options = {
         pageLength: 5,
-        dom: 'Bfrtip',  // Agregar el área de los botones (B = Buttons)
+        dom: 'Bfrtip',
         buttons: withExportButtons ? [
             {
-                extend: 'copy',       // Botón para copiar
+                extend: 'copy',
                 exportOptions: {
-                    columns: ':visible', // Exporta solo las columnas visibles
+                    columns: ':visible',
                     modifier: {
-                        page: 'all' // Exporta todas las filas, no solo las visibles
+                        page: 'all'
                     }
                 }
             },
             {
-                extend: 'excel',      // Botón para Excel
+                extend: 'excel',
                 exportOptions: {
-                    columns: ':visible', // Exporta solo las columnas visibles
+                    columns: ':visible',
                     modifier: {
-                        page: 'all' // Exporta todas las filas, no solo las visibles
+                        page: 'all'
                     },
                     format: {
                         header: function (d, columnIdx) {
-                            // Asegura que solo se exporte el texto original del encabezado
                             return $(tableId).DataTable().settings()[0].aoColumns[columnIdx].sTitle;
                         }
                     }
                 }
             }
-        ] : [],  // Si no hay export buttons, no los agrega
+        ] : [],
         language: {
             emptyTable: "No hay resultados"
         },
-        searching: true, // Habilita la búsqueda global (solo una caja de búsqueda)
+        searching: true,
+        columnDefs: [
+            {
+                targets: '_all', // Aplica a todas las columnas
+                className: 'dt-center', // Centra el contenido de todas las celdas
+                width: 'auto', // Deja que DataTable ajuste automáticamente el ancho de las columnas
+                orderable: true, // Asegura que todas las columnas sean ordenables
+            }
+        ],
         initComplete: function () {
             if (withColumnFilters) {
-                // Si se desea habilitar los filtros por columna
                 this.api().columns().every(function () {
                     var column = this;
-                    var headerText = $(column.header()).text(); // Texto original del encabezado
-                    $(column.header()).html( // Modifica el contenido del encabezado
+                    var headerText = $(column.header()).text();
+                    $(column.header()).html(
                         '<div style="display: flex; flex-direction: column; align-items: flex-start;">' +
                             '<span>' + headerText + '</span>' +
                             '<select style="margin-top: 5px;">' +
@@ -93,16 +99,13 @@ function initializeTableWithFilters(tableId, withExportButtons = true, withColum
                         '</div>'
                     );
 
-                    var select = $(column.header()).find('select'); // Selecciona el filtro insertado
-
-                    // Llena el select con valores únicos de la columna
+                    var select = $(column.header()).find('select');
                     column.data().unique().sort().each(function (d, j) {
-                        if (d) { // Evita añadir valores vacíos
+                        if (d) {
                             select.append('<option value="' + d + '">' + d + '</option>');
                         }
                     });
 
-                    // Aplica el filtro cuando se selecciona un valor
                     select.on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex($(this).val());
                         column.search(val ? '^' + val + '$' : '', true, false).draw();
@@ -114,6 +117,8 @@ function initializeTableWithFilters(tableId, withExportButtons = true, withColum
 
     $(tableId).DataTable(options);
 }
+
+
     // Inicializa todas las tablas con esta configuración
     initializeTableWithFilters('#personal_academico_table');
     initializeTableWithFilters('#documento_table');

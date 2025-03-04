@@ -36,48 +36,16 @@
                     <button id="Introduccion" class="toggle-button"> 
                 </div>
             </header>
-            <div id="sidebar" class="sidebar">
-                <ul>
-                    <li>
-                        <a href="{% url 'VistaPrincipal' %}">
-                            <img src="/static/Img/home.png"  class="button-icon"> Inicio
-                        </a>
-                    </li>
-                    <li>
-                        <hr>
-                        <a href="{% url 'Indicador3' %}">3. Criterio Investigación e innovación</a>
-                        <ul>
-                            <li><a href="#">3.1 Subcriterio Gestión de la investigación e innovación</a> </li>
-                            <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a>
-                            </li>
-                        </ul>
-                        <hr>
-                    </li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </div>
-            
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                const toggleButton = document.getElementById("toggle-button");
-                const sidebar = document.getElementById("sidebar");
-                const container = document.getElementById("container");
-                toggleButton.addEventListener("click", function () {
-                sidebar.classList.toggle("active");
-                container.classList.toggle("sidebar-active");
-                });
-            });
-            </script>
-
+            {% include 'ProyectowebApp/slidebar.html' %}
             <main>
+            <div>
                 <div id="IntroSection">
 
                     <div style="text-align: center;">
                         <img src="/static/Img/Seccion3.png" alt="Imagen centrada" style="width: 55%; height: auto;">
                     </div>
 
-                    <h3 class="justificado">
+                    <h4 class="justificado">
                         Las actividades de investigación e innovación la ejecutan diversos
                         actores como las universidades y escuelas politécnicas, sus carreras y
                         programas, institutos, centros de investigación, unidades, grupos, centros de
@@ -86,9 +54,8 @@
                         estas actividades son difundidos y divulgados para garantizar el uso social de
                         los mismos y su aprovechamiento en la generación de nuevos conocimientos y
                         productos, procesos o servicios.
-                    </h3>
-                    
-                    <h3 class="justificado">
+                    </h4>                 
+                    <h4 class="justificado">
                         Estas actividades están reguladas por normativas, políticas, dominios,
                         líneas y sub líneas de investigación establecidas por las IES, sus carreras
                         y/o programas. Se desarrollan con base con recursos propios y/o externos
@@ -105,22 +72,23 @@
                         punto de vista científico con la generación de nuevo conocimiento o desde
                         el punto de vista práctico con el aporte de ideas que solucionen conflictos o
                         resuelvan problemas de la comunidad. 
-                    </h3>            
+                    </h4>            
                 </div>
-                
-                <footer class="top-footer">
-                    <div class="top-footer-content">
-                      <p>Información adicional aquí, como enlaces rápidos o redes sociales</p>
-                    </div>
-                  </footer>
-                  
-                  <footer class="footer">
-                    <div class="footer-content">
-                      <p>© 2025 Mi Aplicación Web</p>
-                    </div>
-                  </footer>
 
             </div>
         </main>
+
+        <footer class="top-footer">
+            <div class="top-footer-content">
+              <p>Información adicional aquí, como enlaces rápidos o redes sociales</p>
+            </div>
+          </footer>
+          
+          <footer class="footer">
+            <div class="footer-content">
+              <p>© 2025 Mi Aplicación Web</p>
+            </div>
+          </footer>
+    
     </body>
 </html>

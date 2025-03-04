@@ -143,3 +143,4 @@ def InicioSesion(request):
         form = AuthenticationForm()
     
     return render(request, "ProyectowebApp/InicioSesion.html", {'form': form})
+

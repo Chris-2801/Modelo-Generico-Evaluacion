@@ -51,40 +51,7 @@
             </button>
         </div>
     </header>
-    <div id="sidebar" class="sidebar">
-        <ul>
-            <li>
-                <a href="{% url 'VistaPrincipal' %}">
-                    <img src="/static/Img/home.png"  class="button-icon"> Inicio
-                </a>
-            </li>
-            <li>
-                <hr>
-                <a href="{% url 'Indicador3' %}">3. Criterio Investigación e innovación</a>
-                <ul>
-                    <li><a href="#">3.1 Subcriterio Gestión de la investigación e innovación</a> </li>
-                    <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a>
-                    </li>
-                </ul>
-                <hr>
-            </li>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-    </div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("toggle-button");
-        const sidebar = document.getElementById("sidebar");
-        const container = document.getElementById("container");
-         toggleButton.addEventListener("click", function () {
-         sidebar.classList.toggle("active");
-         container.classList.toggle("sidebar-active");
-        });
-    });
-    </script>
-
+    {% include 'ProyectowebApp/slidebar.html' %}
     <main>
         <title>Home - Personal Académico</title>
 
@@ -93,10 +60,10 @@
 
             <form id="calculationForm" method="POST" action="{% url 'Contribucion_Investigacion' %}" class="form-container">
                 {% csrf_token %}
-
+                <h4>
                 <label for="anio_evaluacion">Año de Evaluación:</label>
                 <input type="text" id="anio_evaluacion" name="anio_evaluacion" required><br>
-            
+                    
                 <label for="alfa1">Alfa1:</label>
                 <input type="number" step="0.01" id="alfa1" name="alfa1" required><br>
             
@@ -110,59 +77,46 @@
                 <input type="number" step="0.01" id="alfa4" name="alfa4" required><br>
             
                 <button type="submit">Calcular IPA</button>
-
+            </h4>
             </form>
             <hr>
             <div style="text-align: center;">
                 <img src="/static/Img/Seccion3.png" alt="Imagen centrada" style="width: 55%; height: auto;">
             </div>
             <hr>
-            <h2 class="ht1">Indicador 19. Producción académica</h2>
+            <h2 class="ht2">Indicador 19. Producción académica</h2>
 
-            <h3 class="justificado">
-                Es necesaria la evaluación de los resultados de las investigaciones
-                realizadas por las carreras, desde esta perspectiva (Rojas, 2021) afirmaron que
-                las universidades ecuatorianas requieren de un monitoreo sistemático de la
-                información de sus resultados e impacto. Los autores también mencionaron que 
-                el uso de indicadores para medir la producción científica y evaluar los
-                resultados de los profesores presentan una gran diversidad, que se basa tanto
-                en aspectos bibliométricos de carácter científico, como estándares de gestión
-                de la calidad. A partir de esto, se presenta un indicador cuantitativo que busca
-                evaluar de forma compilada la producción científica de los profesores de la
-                carrera
-            </h3>      
+            <h4 class="justificado">
+                Es necesaria la evaluación de los resultados de las investigaciones realizadas por las carreras, desde esta perspectiva (Rojas, 2021) afirmaron que
+                las universidades ecuatorianas requieren de un monitoreo sistemático de la información de sus resultados e impacto. Los autores también mencionaron que 
+                el uso de indicadores para medir la producción científica y evaluar los resultados de los profesores presentan una gran diversidad, que se basa tanto
+                en aspectos bibliométricos de carácter científico, como estándares de gestión de la calidad. A partir de esto, se presenta un indicador cuantitativo que busca
+                evaluar de forma compilada la producción científica de los profesores de la carrera
+            </h4> 
+
             <hr>
-            <h2 class="ht1">Indicador 20. . Interdisciplinariedad para la articulación de las funciones
-                sustantivas </h2>
+            <h2 class="ht2">Indicador 20. Interdisciplinariedad para la articulación de las funciones sustantivas </h2>
 
-            <h3 class="justificado">
-                Las UEP como organizaciones pluridisciplinares a través de las diversas
-                disciplinas o carreras generan espacios de integración de las funciones
-                sustantivas, entendida como la relación reciproca de una o varias disciplinas
-                que se complementan o suman esfuerzos para atender un mismo problema
-                o proyecto del contexto institucional o social. La interdisciplinariedad se
-                produce cuando hay coordinación o integración de un conjunto de saberes
-                entre las diversas disciplinas en relación con algún fenómeno en concreto o
-                necesidad social (CES-PDSES, 2022).
-            </h3>
-
-            <h3>
-                El atender una realidad compleja requiere de la interdisciplinaridad, este
-                encuentro entre estudiantes y profesores universitarios brinda la posibilidad
-                para un abordaje conjunto de problemas que pueden ser atendidos de modo
-                diverso pero complementario, lo que enriquece el proceso de enseñanzaaprendizaje 
-                y promueva la articulación de las funciones universitarias.
-                Las actividades conjuntas entre asignaturas de las diferentes funciones
-                universitarias permiten ejercitar una educación colaborativa e integradora que
-                contribuye a una formación integral del estudiante (Rivera, 2015 ).
-            </h3>
+            <h4 class="justificado">
+                Las UEP como organizaciones pluridisciplinares a través de las diversas disciplinas o carreras generan espacios de integración de las funciones
+                sustantivas, entendida como la relación reciproca de una o varias disciplinas que se complementan o suman esfuerzos para atender un mismo problema
+                o proyecto del contexto institucional o social. La interdisciplinariedad se produce cuando hay coordinación o integración de un conjunto de saberes
+                entre las diversas disciplinas en relación con algún fenómeno en concreto o necesidad social (CES-PDSES, 2022).
+            </h4>
+            <h4>
+                El atender una realidad compleja requiere de la interdisciplinaridad, este encuentro entre estudiantes y profesores universitarios brinda la posibilidad
+                para un abordaje conjunto de problemas que pueden ser atendidos de modo diverso pero complementario, lo que enriquece el proceso de enseñanzaaprendizaje 
+                y promueva la articulación de las funciones universitarias. Las actividades conjuntas entre asignaturas de las diferentes funciones
+                universitarias permiten ejercitar una educación colaborativa e integradora que contribuye a una formación integral del estudiante (Rivera, 2015 ).
+            </h4>
+            
         </div>
         <!-- Sección de Tablas -->
         <div id="tablasSection" class="hidden">        
         
             {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
             <hr>
-            <h1>Lista de Personal Académico</h1>
+            <h1 class="ht2">Lista de Personal Académico</h1>
             <hr>
             <table id="personal_academico_table" class="display">
                 <thead>
@@ -207,7 +161,7 @@
                 </tbody>
             </table>
             <hr>
-            <h1>Lista de Documentos</h1>
+            <h1 class="ht2">Lista de Documentos</h1>
             <hr>
               
             <table id="documento_table" class="display">
@@ -431,7 +385,7 @@
 
         <!-- Sección de Cálculos -->
         <div id="calculosSection" class="hidden">
-            <h1>Indicador 19. Producción académica</h1>
+            <h1 class="ht2">Indicador 19. Producción académica</h1>
             <hr>
             <h4>Tipo : Cuantitativo</h4>
             <h4>
@@ -445,10 +399,12 @@
 
             <h4>Cuartiles de Publicación</h4>
             <ul>
+                <h4>
                 <li>Primer cuartil (Q1): {{ cuartiles.Q1 }}</li>
                 <li>Segundo cuartil (Q2): {{ cuartiles.Q2 }}</li>
                 <li>Tercer cuartil (Q3): {{ cuartiles.Q3 }}</li>
                 <li>Tercer cuartil (Q4): {{ cuartiles.Q4 }}</li>
+            </h4>
             </ul>
 
             <h4>Número de publicaciones (NP): {{ Numero_Publicaciones }}</h4>
@@ -464,11 +420,33 @@
                 <div id="formula-container_PIA"></div>
             </div>
             
+            <details>
+                <summary>Variables</summary>
+                <ol style="list-style-type: lower-alpha;">
+                  <p>φi: Coeficiente asignado según el nivel de impacto de la i-ésima producción científica</p>
+                  <p>OPI: Obra relevante de producción artística revisada por curadores o
+                    expertos externos a la institución y expuesta en un evento internacional
+                    o que ha ganado un premio internacional.</p>
+                  <p>OPN: Obra relevante de producción artística revisada por curadores
+                    o expertos externos a la institución y expuesta en un evento nacional o
+                    que ha ganado un premio nacional.</p>
+                  <p>L: Libros reportados por la carrera que están publicados y revisados por pares.</p>
+                  <p>CL: Capítulos reportados por la carrera de los libros parciales</p>
+                  <p>CLi : Cada i-ésimo capítulo. </p>
+                  <p>TCi : Total de capítulos que tiene el i-ésimo libro parcial</p>
+                  <p>PP: Propiedad patentada</p>
+                  <p>PIi : Producto i-ésimo de Propiedad Industrial</p>
+                  <p>DAi : Producto i-ésimo de Derechos de autor y conexos</p>
+                  <p>OV&CTi : Producto i-ésimo de Obtenciones vegetales y Conocimientos tradicionales</p>
+                </ol>
+              </details>
+            
+
             <!-- Nueva fila para la fórmula -->
             <div id="new-formula-row" style="display: flex; justify-content: center; margin-top: 20px;">
                 <div id="formula-container_IPA"></div>
             </div>
-            
+
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
                     var formulas = [
@@ -492,6 +470,20 @@
                 });
             </script>
             
+            <details>
+                <summary>Variables</summary>
+                <ol style="list-style-type: lower-alpha;">
+                  <p>IPA: Índice de producción académica per cápita</p>
+                  <p>PC: Producción científica</p>
+                  <p>PA: Producción artística</p>
+                  <p>LyCL: Libros y capítulos de libros revisados por pares</p>
+                  <p>PIA: Propiedad intelectual aplicada resultado de un proyecto de investigación, vinculación o producción de la carrera</p>
+                  <p>PTC: Personal académico con dedicación a tiempo completo vinculado en el último año concluido antes de inicio del proceso de evaluación.</p>
+                  <p>PMT: Personal académico con dedicación a medio tiempo vinculado en el último año concluido antes de inicio del proceso de evaluación.</p>
+                  <p>αi: Factor adicional asignado conforme al modelo específico por campo de conocimiento</p>
+                </ol>
+              </details>
+
             <table id="documento_table_Calculos" class="display">
                 <thead>
                     <tr>
@@ -554,7 +546,7 @@
             
             <h4>El Índice de producción académica per cápita (IPA): {{ IPA }} ({{anio_inicio}} - {{anio_fin}})</h4>
 
-            <h1>Indicador 19. Estadisticas Categóricas Cualitativas</h1>
+            <h1 class="ht2">Indicador 19. Estadisticas Categóricas Cualitativas</h1>
 
             <!-- Menú para seleccionar la variable -->
 
@@ -598,7 +590,7 @@
             <script> const datosGrafico = JSON.parse('{{ datos_grafico_json|safe }}'); </script>
             <script src="{% static 'Js/Grafico_Cualitativas.js' %}"></script>
 
-            <h1>Resultados de IPA en el rango de evaluación por Año</h1>
+            <h1 class="ht2">Resultados de IPA en el rango de evaluación por Año</h1>
 
             {% if IPA_Anual_rango %}
         <table>
@@ -629,7 +621,7 @@
         <p>No hay datos disponibles para este rango de años.</p>
     {% endif %}
 
-                <h1>Resultados de IPA por Carrera en el rango de Evaluación</h1>
+                <h1 class="ht2">Resultados de IPA por Carrera en el rango de Evaluación</h1>
                 <table id="IPA_Carrera_Rango">
                     <thead>
                         <tr>
@@ -661,16 +653,18 @@
         </div>
 
         <div id="calculosCarreraSection" class="hidden">
-            <h1>Indicador 19. Producción académica</h1>
+            <h1 class="ht2">Indicador 19. Producción académica</h1>
             <h4>Cuartiles de Publicación datos totales</h4>
             <ul>
+                <h4>
                 <li>Primer cuartil (Q1): {{ cuartiles_total.Q1 }}</li>
                 <li>Segundo cuartil (Q2): {{ cuartiles_total.Q2 }}</li>
                 <li>Tercer cuartil (Q3): {{ cuartiles_total.Q3 }}</li>
                 <li>Tercer cuartil (Q4): {{ cuartiles_total.Q4 }}</li>
+            </h4>
             </ul>
             
-            <h1>Resultados de IPA datos totales por Año</h1>
+            <h1 class="ht2">Resultados de IPA datos totales por Año</h1>
 
                 {% if IPA_Anual %}
                 <table id="IPA_Anual" class="display">
@@ -699,7 +693,7 @@
                 </table>
                 {% else %} <p>No se encontraron datos</p> {% endif %}
 
-            <h1>Gráfico de IPA anual</h1>
+            <h1 class="ht2">Gráfico de IPA anual</h1>
 
             <!-- Botón para descargar la imagen -->
             <label for="añoInicio">Año Inicio:</label>
@@ -715,7 +709,7 @@
             <script> const datosGraficoIPA = JSON.parse('{{ datos_grafico_json_IPA|safe }}'); </script>
             <script src="{% static 'Js/Grafico_IPA.js' %}"></script>          
 
-            <h1>Resultados de IPA datos totales por Carrera</h1>
+            <h1 class="ht2">Resultados de IPA datos totales por Carrera</h1>
             
             <table id="IPA_Anual_Carrera">
                 <thead>
@@ -746,7 +740,7 @@
         </div>
         
         <div id="Indicador20" class="hidden">
-            <h1>Indicador 20. Interdisciplinariedad para la articulación de las funciones sustantivas </h1>
+            <h1 class="ht2">Indicador 20. Interdisciplinariedad para la articulación de las funciones sustantivas </h1>
             <hr>
             <h4>Tipo : Cualitativo</h4>
             <h4>
