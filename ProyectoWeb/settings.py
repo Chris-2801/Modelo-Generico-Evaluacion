@@ -94,8 +94,10 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://root:2CQMwOXgjinn7eRjNMUwpiRccqPoklqZ@dpg-cu66948gph6c73c3vebg-a.oregon-postgres.render.com/test_database_8faj')
+    'default': dj_database_url.config(default='postgresql://databaseproyecto_user:THTdgbMrzO7hjq1SGLxcX1rC1RKqD0BU@dpg-cv3p3mdds78s73dvoeag-a.oregon-postgres.render.com/databaseproyecto')
+
 }
+a
 
 '''DATABASES = {
     'default': {
