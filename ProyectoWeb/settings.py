@@ -95,9 +95,7 @@ import dj_database_url
 
 DATABASES = {
     'default': dj_database_url.config(default='postgresql://databaseproyecto_user:THTdgbMrzO7hjq1SGLxcX1rC1RKqD0BU@dpg-cv3p3mdds78s73dvoeag-a.oregon-postgres.render.com/databaseproyecto')
-
 }
-a
 
 '''DATABASES = {
     'default': {
