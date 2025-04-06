@@ -80,7 +80,7 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ProyectoWeb',
@@ -89,13 +89,13 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}'''
+}
 
 import dj_database_url
-
-DATABASES = {
+'''External Database URL'''
+'''DATABASES = {
     'default': dj_database_url.config(default='postgresql://databaseproyecto_user:THTdgbMrzO7hjq1SGLxcX1rC1RKqD0BU@dpg-cv3p3mdds78s73dvoeag-a.oregon-postgres.render.com/databaseproyecto')
-}
+}'''
 
 '''DATABASES = {
     'default': {
