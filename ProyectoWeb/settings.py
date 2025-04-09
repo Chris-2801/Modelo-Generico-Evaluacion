@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 import dj_database_url
 '''External Database URL'''
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://postgres:[xXjLBrQEplK2s7p9]@db.pzuioduzwfnqdkxmmgya.supabase.co:5432/postgres')
+    'default': dj_database_url.config(default='postgresql://base_de_datos_8ai4_user:sTBty5hLmCSMc0h5gJf8SyPsBGnDUJTB@dpg-cvqvlomuk2gs73c3d860-a.oregon-postgres.render.com/base_de_datos_8ai4')
 }
 
 '''DATABASES = {
