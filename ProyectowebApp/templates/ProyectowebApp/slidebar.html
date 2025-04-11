@@ -7,36 +7,45 @@
         </li>
         <li>
             <hr>
-                <a href="#">1. Curriculo</a> <hr>
-                <a href="#">2. Docencia</a>
-                    <ul>
-                        <li><a href="#">2.1. Personal Académico</a> </li>
-                        <li><a href="#">2.2. Estudiantes</a> </li>
-                    </ul>
-                <hr>
-                </li>
-                <li>
-                <a href="{% url 'Indicador3' %}">3. Criterio Investigación e innovación</a>
-                    <ul>
-                        <li><a href="#">3.1 Subcriterio Gestión de la investigación e innovación</a> </li>
-                        <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a></li>
-                    </ul>
-                    <hr> </li>
-                    <li>
-                <a href="#">4. Vinculación con la sociedad</a>
-                    <ul>
-                        <li><a href="#">4.1 Subcriterio Organización de la vinculación con la sociedad</a> </li>
-                        <li><a href="#">4.2 Subcriterio Transferencia de tecnología y de conocimiento</a>
-                        </li>
-                    </ul>
-                    <hr></li>
-                    <li>
-                <a href="#">5. Funciones estratégicas y de soporte</a>
-                    <ul>
-                        <li><a href="#">5.1 Subcriterio Funciones Estratégicas</a> </li>
-                        <li><a href="#">5.2. Subcriterio Funciones de Soporte</a>
-                        </li>
-                    </ul>
+            <a href="{% url 'Curriculo' %}">1. Currículo</a>
+            <hr>
+            <a href="#">
+                2. Docencia <span class="toggle-submenu">▶</span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">2.1. Personal Académico</a></li>
+                <li><a href="#">2.2. Estudiantes</a></li>
+            </ul>
+            <hr>
+        </li>
+        <li>
+            <a href="{% url 'Indicador3' %}">
+                3. Criterio Investigación e innovación <span class="toggle-submenu">▶</span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">3.1. Subcriterio Gestión de la investigación e innovación</a></li>
+                <li><a href="{% url 'Contribucion_Investigacion' %}">3.2. Subcriterio Contribución de la investigación a la carrera</a></li>
+            </ul>
+            <hr>
+        </li>
+        <li>
+            <a href="#">
+                4. Vinculación con la sociedad <span class="toggle-submenu">▶</span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">4.1. Subcriterio Organización de la vinculación con la sociedad</a></li>
+                <li><a href="#">4.2. Subcriterio Transferencia de tecnología y conocimiento</a></li>
+            </ul>
+            <hr>
+        </li>
+        <li>
+            <a href="#">
+                5. Funciones estratégicas y de soporte <span class="toggle-submenu">▶</span>
+            </a>
+            <ul class="submenu">
+                <li><a href="#">5.1. Subcriterio Funciones Estratégicas</a></li>
+                <li><a href="#">5.2. Subcriterio Funciones de Soporte</a></li>
+            </ul>
             <hr>
         </li>
         <li><a href="#">Acerca de</a></li>
@@ -49,9 +58,27 @@
         const toggleButton = document.getElementById("toggle-button");
         const sidebar = document.getElementById("sidebar");
         const container = document.getElementById("container");
-        toggleButton.addEventListener("click", function () {
-            sidebar.classList.toggle("active");
-            container.classList.toggle("sidebar-active");
+
+        if (toggleButton) {
+            toggleButton.addEventListener("click", function () {
+                sidebar.classList.toggle("active");
+                container.classList.toggle("sidebar-active");
+            });
+        }
+
+        const toggles = document.querySelectorAll(".toggle-submenu");
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener("click", function (e) {
+                e.preventDefault();
+                const parent = toggle.closest("li");
+                const submenu = parent.querySelector(".submenu");
+
+                if (submenu) {
+                    submenu.classList.toggle("show");
+                    toggle.classList.toggle("rotated");
+                }
+            });
         });
     });
 </script>

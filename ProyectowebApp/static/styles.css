@@ -18,17 +18,71 @@ main {margin: 30px;}
 /********************************************************* Estilo de la cabecera **************************************************/
 header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;z-index: 1;width: 100vw;}
 
-#sidebar {position: fixed;top: 0;left: -250px;width: 250px;height: 100%;background-color: #424242;transition: left 0.3s ease;z-index: 2; }
-#sidebar.active {left: 0;}
-#container.sidebar-active {margin-left: 250px;}
-#sidebar ul ul {display: none;padding-left: 20px; }
-#sidebar ul li:hover > ul {display: block;}
-.sidebar ul {list-style: none;padding: 0;}
-.sidebar ul li {margin: 20px 0;}
-.sidebar ul li a {color: white;text-decoration: none;display: block; padding: 10px;background-color:#424242;border-radius: 5px;font-size: 14px;}
-.sidebar ul li a:hover {background-color: #424242; }
-.sidebar ul li ul li a {background-color: #424242; }
-.sidebar ul li ul li a:hover {background-color: #424242;}
+/* === Sidebar layout === */
+#sidebar {position: fixed;top: 0;left: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #424242;
+  transition: left 0.3s ease;
+  z-index: 2;
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#container.sidebar-active {
+  margin-left: 300px;
+}
+
+/* === Lista y enlaces === */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  background-color: #424242;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.sidebar ul li a:hover {
+  background-color: #616161;
+}
+
+/* Submenús */
+.sidebar ul ul.submenu {
+  display: none;
+  padding-left: 20px;
+}
+
+.sidebar ul ul.submenu.show {
+  display: block;
+}
+
+/* Flecha toggle */
+.toggle-submenu {
+  cursor: pointer;
+  float: right;
+  font-size: 12px;
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.toggle-submenu.rotated {
+  transform: rotate(90deg);
+}
+
 
 /***************************************************** Estilo para los botones de la página *********************************************/
 button {margin: 3px;padding: 1px 2px;background-color: #007BFF;color: white;border: none;border-radius: 2px;cursor: pointer;width: auto;}
