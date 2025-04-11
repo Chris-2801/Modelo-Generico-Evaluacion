@@ -10,6 +10,7 @@ urlpatterns = [
     path('VistaPrincipal/', views.VistaPrincipal, name='VistaPrincipal'),
     path('Contribucion_Investigacion/', views.Contribucion_Investigacion, name='Contribucion_Investigacion'),
     path('InicioSesion/', views.InicioSesion, name='InicioSesion'),
+    path('Curriculo/', views.Curriculo, name='Curriculo'),
 ]
 
 # Esto permitirá que Django sirva archivos de medios durante el desarrollo (cuando DEBUG=True)

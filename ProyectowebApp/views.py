@@ -144,3 +144,5 @@ def InicioSesion(request):
     
     return render(request, "ProyectowebApp/InicioSesion.html", {'form': form})
 
+def Curriculo(request):
+    return render(request, 'ProyectowebApp/Curriculo.html')

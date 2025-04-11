@@ -106,3 +106,4 @@ document.getElementById('descargarBtn').addEventListener('click', function() {
     enlace.click();  // Ejecutamos la descarga
 });
 
+

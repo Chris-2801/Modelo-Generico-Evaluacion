@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
     // Manejo de visibilidad para secciones
     $('#showTables').on('click', function () {
         $('#tablasSection').show(); // Muestra la sección de Tablas
@@ -9,37 +10,37 @@ $(document).ready(function () {
     });
 
     $('#showCalculations').on('click', function () {
-        $('#calculosSection').show(); // Muestra la sección de IPA Total
-        $('#tablasSection').hide(); // Oculta la sección de Tablas
-        $('#calculosCarreraSection').hide(); // Oculta la sección de IPA Carrera
-        $('#IntroSection').hide(); // Oculta la sección de Introducción
-        $('#Indicador20').hide(); // Oculta la sección de Indicador20 por defecto
+        $('#calculosSection').show(); 
+        $('#tablasSection').hide(); 
+        $('#calculosCarreraSection').hide(); 
+        $('#IntroSection').hide(); 
+        $('#Indicador20').hide(); 
     });
 
     $('#showCalculationsCarrera').on('click', function () {
-        $('#calculosCarreraSection').show(); // Muestra la sección de IPA Carrera
-        $('#tablasSection').hide(); // Oculta la sección de Tablas
-        $('#calculosSection').hide(); // Oculta la sección de IPA Total
-        $('#IntroSection').hide(); // Oculta la sección de Introducción
-        $('#Indicador20').hide(); // Oculta la sección de Indicador20 por defecto
+        $('#calculosCarreraSection').show(); 
+        $('#tablasSection').hide(); 
+        $('#calculosSection').hide(); 
+        $('#IntroSection').hide(); 
+        $('#Indicador20').hide(); 
     });
 
     // Manejo de visibilidad para la sección de Introducción
     $('#Introduccion').on('click', function () {
-        $('#IntroSection').show(); // Muestra la sección de Introducción
-        $('#tablasSection').hide(); // Oculta la sección de Tablas
-        $('#calculosSection').hide(); // Oculta la sección de IPA Total
-        $('#calculosCarreraSection').hide(); // Oculta la sección de IPA Carrera
-        $('#Indicador20').hide(); // Oculta la sección de Indicador20 por defecto
+        $('#IntroSection').show(); 
+        $('#tablasSection').hide(); 
+        $('#calculosSection').hide(); 
+        $('#calculosCarreraSection').hide(); 
+        $('#Indicador20').hide();
     });
 
     // Nuevo manejo de visibilidad para la sección Indicador20
     $('#ShowIndicador20').on('click', function () {
-        $('#Indicador20').show(); // Muestra la sección de Indicador20
-        $('#tablasSection').hide(); // Oculta la sección de Tablas
-        $('#calculosSection').hide(); // Oculta la sección de IPA Total
-        $('#calculosCarreraSection').hide(); // Oculta la sección de IPA Carrera
-        $('#IntroSection').hide(); // Oculta la sección de Introducción
+        $('#Indicador20').show(); 
+        $('#tablasSection').hide(); 
+        $('#calculosSection').hide(); 
+        $('#calculosCarreraSection').hide(); 
+        $('#IntroSection').hide(); 
     });
 });
 

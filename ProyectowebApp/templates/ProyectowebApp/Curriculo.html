@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!-- Estilos y librerías -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
+    <!-- Librerías de JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+    <!-- Incluir KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+
+    <!-- Graficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+    <header>
+        <h1 class="ht">3. Criterio Investigación e innovación</h1>
+        <h2 class="httitle">3.2. Subcriterio Contribución de la investigación a la carrera</h2>
+        <hr>   
+        <div>
+            <button id="toggle-button" class="toggle-button">☰</button>
+            <button id="IntroduccionCurriculo" class="toggle-button"> 
+                <img src="/static/Img/abstract.png" alt="Ver Tablas" class="button-icon">Introducción
+            </button>
+            <button id="showPerfil" class="toggle-button"> 
+                <img src="/static/Img/table.png" alt="Ver Tablas" class="button-icon">Peril de Egreso
+            </button>
+            <button id="showProyectoCurricular" class="toggle-button">
+                <img src="/static/Img/chart.png" alt="Ver Tablas" class="button-icon">Proyecto Curricular
+            </button>
+            <button id="showMallaCurricular" class="toggle-button"> 
+                <img src="/static/Img/analytics.png" alt="Ver Tablas" class="button-icon">Malla Curricular
+            </button>
+            <button id="ShowSyllabus" class="toggle-button"> 
+                <img src="/static/Img/project.png" alt="Ver Tablas" class="button-icon">Syllabus
+            </button>
+            <button id="showMetodologiaAprendizaje" class="toggle-button">
+                <img src="/static/Img/chart.png" alt="Ver Tablas" class="button-icon">Metodología y Recursos de Aprendizaje
+            </button>
+            <button id="showEscenarioPracticas" class="toggle-button"> 
+                <img src="/static/Img/analytics.png" alt="Ver Tablas" class="button-icon">Escenarios de Prácticas Formativas
+            </button>
+            <button id="ShowTAC" class="toggle-button"> 
+                <img src="/static/Img/project.png" alt="Ver Tablas" class="button-icon">TAC
+            </button>
+        </div>
+    </header>
+    {% include 'ProyectowebApp/slidebar.html' %}
+    <script src="{% static 'Js\Secciones.js' %}"></script>
+    <main>
+        <title>Home - Personal Académico</title>
+        <!-- Sección Introductoria -->
+        <div id="IntroSection">
+            <p>Introduccion</p>
+        <div id="PerilEgresoSection" class="hidden">  
+            <p>Hola</p>
+        <div id="ProyectoCurricularSection" class="hidden"> 
+        <div id="MallaCurricularSection" class="hidden"> 
+        <div id="SyllabusSection" class="hidden">
+        <div id="MetodologiaRecursosAprendizajeSection" class="hidden">
+        <div id="EscenariosPracticasFormativasSection" class="hidden">
+        <div id="TACSection" class="hidden">
+
+    </main>
+
+        <footer class="top-footer">
+            <div class="top-footer-content">
+              <p>Información adicional aquí, como enlaces rápidos o redes sociales</p>
+            </div>
+          </footer>
+          
+          <footer class="footer">
+            <div class="footer-content">
+              <p>© 2025 Mi Aplicación Web</p>
+            </div>
+          </footer>
+    
+    </body>
+</html>
