@@ -20,7 +20,8 @@ class Personal_Academico(models.Model):
     segundo_apellido = models.CharField(max_length=100, default="")
     carrera_personal = models.CharField(max_length=20, choices=OPCIONES_FACULTAD, default='No Aplica')
     fecha_nacimiento = models.DateField(default=date(2000, 1, 1))
-    genero = models.CharField(max_length=100, default="")
+    genero = models.CharField(max_length=100, choices=[('Masculino', 'Masculino'), ('Femenino', 'Femenino'), ('Otro', 'Otro')],
+        default="")
     estado_civil = models.CharField(
         max_length=50,
         choices=[('Soltero/a', 'Soltero/a'), ('Casado/a', 'Casado/a'), ('Viudo/a', 'Viudo/a'), 
@@ -223,7 +224,7 @@ class Indicador20(models.Model):
         blank=True
     )
     class Meta:
-        verbose_name_plural = "Fuentes de Información: Indicador 20"
+        verbose_name_plural = "Fuentes de Información: Contribución de la investigación a la carrera"
 
 def Produccion_Cientifica(anio_inicio, anio_fin):
     

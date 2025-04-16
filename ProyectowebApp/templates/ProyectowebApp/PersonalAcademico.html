@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include 'ProyectowebApp/head.html' %}
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1 class="ht">3. Criterio Investigación e innovación</h1>
+            <h2 class="httitle">3.2. Subcriterio Contribución de la investigación a la carrera</h2>
+            <hr>   
+            <div>
+                <button id="toggle-button" class="toggle-button">☰</button>
+                <button id="showIndicador8" class="toggle-button"> 
+                    <img src="{% static 'Img/abstract.png' %}" alt="Ver Tablas" class="button-icon">Indicador 8
+                </button>
+                <button id="showIndicador9" class="toggle-button"> 
+                    <img src="{% static 'Img/table.png' %}" alt="Ver Tablas" class="button-icon">Indicador 9
+                </button>
+                <button id="showIndicador10" class="toggle-button">
+                    <img src="{% static 'Img/chart.png' %}" alt="Ver Tablas" class="button-icon">Indicador 10
+                </button>
+            </div>
+        </header>
+
+        {% include 'ProyectowebApp/slidebar.html' %}
+
+        <main>
+            <title>Home - Personal Académico</title>
+            <div id="Indicador8seccion">
+                <p>Hola</p>
+            </div>
+            <div id="Indicador9seccion" class="hidden">  
+                <p>j</p>
+            </div>
+            <div id="Indicador10seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+        </main>
+
+        {% include 'ProyectowebApp/Footer.html' %}
+    </div>
+
+    <script src="{% static 'Js/Secciones.js' %}"></script>
+</body>
+</html>

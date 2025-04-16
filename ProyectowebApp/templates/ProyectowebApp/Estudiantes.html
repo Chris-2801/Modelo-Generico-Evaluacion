@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include 'ProyectowebApp/head.html' %}
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1 class="ht">3. Criterio Investigación e innovación</h1>
+            <h2 class="httitle">3.2. Subcriterio Contribución de la investigación a la carrera</h2>
+            <hr>   
+            <div>
+                <button id="toggle-button" class="toggle-button">☰</button>
+                <button id="showIndicador11" class="toggle-button"> 
+                    <img src="{% static 'Img/abstract.png' %}" alt="Ver Tablas" class="button-icon">Indicador 11
+                </button>
+                <button id="showIndicador12" class="toggle-button"> 
+                    <img src="{% static 'Img/table.png' %}" alt="Ver Tablas" class="button-icon">Indicador 12
+                </button>
+                <button id="showIndicador13" class="toggle-button">
+                    <img src="{% static 'Img/chart.png' %}" alt="Ver Tablas" class="button-icon">Indicador 13
+                </button>
+                <button id="showIndicador14" class="toggle-button"> 
+                    <img src="{% static 'Img/abstract.png' %}" alt="Ver Tablas" class="button-icon">Indicador 14
+                </button>
+                <button id="showIndicador15" class="toggle-button"> 
+                    <img src="{% static 'Img/table.png' %}" alt="Ver Tablas" class="button-icon">Indicador 15
+                </button>
+                <button id="showIndicador16" class="toggle-button">
+                    <img src="{% static 'Img/chart.png' %}" alt="Ver Tablas" class="button-icon">Indicador 16
+                </button>
+                <button id="showIndicador17" class="toggle-button">
+                    <img src="{% static 'Img/chart.png' %}" alt="Ver Tablas" class="button-icon">Indicador 17
+                </button>
+            </div>
+        </header>
+
+        {% include 'ProyectowebApp/slidebar.html' %}
+
+        <main>
+            <title>Home - Personal Académico</title>
+            <div id="Indicador11seccion">
+                <p>Hola</p>
+            </div>
+            <div id="Indicador12seccion" class="hidden">  
+                <p>j</p>
+            </div>
+            <div id="Indicador13seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+            <div id="Indicador14seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+            <div id="Indicador15seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+            <div id="Indicador16seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+            <div id="Indicador17seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+        </main>
+
+        {% include 'ProyectowebApp/Footer.html' %}
+    </div>
+
+    <script src="{% static 'Js/Secciones.js' %}"></script>
+</body>
+</html>

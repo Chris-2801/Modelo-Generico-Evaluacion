@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include 'ProyectowebApp/head.html' %}
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1 class="ht">3. Criterio Investigación e innovación</h1>
+            <h2 class="httitle">3.2. Subcriterio Contribución de la investigación a la carrera</h2>
+            <hr>   
+            <div>
+                <button id="toggle-button" class="toggle-button">☰</button>
+                <button id="showIndicador28" class="toggle-button"> 
+                    <img src="{% static 'Img/abstract.png' %}" alt="Ver Tablas" class="button-icon">Indicador 28
+                </button>
+                <button id="showIndicador29" class="toggle-button"> 
+                    <img src="{% static 'Img/table.png' %}" alt="Ver Tablas" class="button-icon">Indicador 29
+                </button>
+                <button id="showIndicador30" class="toggle-button">
+                    <img src="{% static 'Img/chart.png' %}" alt="Ver Tablas" class="button-icon">Indicador 30
+                </button>
+                <button id="showIndicador31" class="toggle-button">
+                    <img src="{% static 'Img/chart.png' %}" alt="Ver Tablas" class="button-icon">Indicador 31
+                </button>
+            </div>
+        </header>
+
+        {% include 'ProyectowebApp/slidebar.html' %}
+
+        <main>
+            <title>Home - Personal Académico</title>
+            <div id="Indicador28seccion">
+                <p>Hola</p>
+            </div>
+            <div id="Indicador29seccion" class="hidden">  
+                <p>j</p>
+            </div>
+            <div id="Indicador30seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+            <div id="Indicador31seccion" class="hidden"> 
+                <p>k</p> 
+            </div>
+        </main>
+
+        {% include 'ProyectowebApp/Footer.html' %}
+    </div>
+
+    <script src="{% static 'Js/Secciones.js' %}"></script>
+</body>
+</html>

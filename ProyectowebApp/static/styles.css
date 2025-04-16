@@ -146,3 +146,32 @@ details {background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; borde
 summary {font-weight: bold;cursor: pointer;}
 summary:hover {color: #007bff; }
 
+/************************************************************* Estilo imagen a un lado texto al otro **************************************************/
+
+.contenedor-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap; /* para hacerlo responsive */
+}
+
+.texto-izquierda {
+  flex: 1;
+}
+
+.imagen-derecha img {
+  width: 390px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .contenedor-flex {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .imagen-derecha img {
+      width: 50%;
+  }
+}

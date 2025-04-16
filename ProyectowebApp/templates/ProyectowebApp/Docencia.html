@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    
+<head> {% include 'ProyectowebApp/head.html' %} </head>
+
+    <body>
+        <div id="container">
+            <header>
+                <h1 class="ht">2. Docencia</h1>
+                <hr>
+                <div>
+                    <button id="toggle-button" class="toggle-button">☰</button>
+                    <button id="Introduccion" class="toggle-button"> 
+                </div>
+            </header>
+            {% include 'ProyectowebApp/slidebar.html' %}
+            <main>
+            <div>
+                <div id="IntroSection">
+
+                    <div style="text-align: center;">
+                        <img src="/static/Img/Seccion3.png" alt="Imagen centrada" style="width: 55%; height: auto;">
+                    </div>
+
+                    <h4 class="justificado">
+                        La docencia es la construcción de conocimientos y desarrollo de
+                        capacidades y habilidades, resultante de la interacción entre profesores y
+                        estudiantes en experiencias de enseñanza-aprendizaje; en ambientes que
+                        promueven la relación de la teoría con la práctica y garanticen la libertad de
+                        pensamiento, la reflexión crítica y el compromiso ético (CES-RRA, 2022).
+                    </h4>                           
+                </div>
+
+            </div>
+        </main>
+
+        {% include 'ProyectowebApp/Footer.html' %}
+    
+    </body>
+</html>

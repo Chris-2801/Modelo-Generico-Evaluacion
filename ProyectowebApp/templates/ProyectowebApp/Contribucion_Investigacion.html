@@ -1,31 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <!-- Estilos y librerías -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
-
-    <!-- Librerías de JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-
-    <!-- Incluir KaTeX -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-
-    <!-- Graficos -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-</head>
+<head> {% include 'ProyectowebApp/head.html' %} </head>
 
 <body>
     <div id="container">
@@ -52,6 +28,7 @@
             </button>
         </div>
     </header>
+    <script src="{% static 'Js\Secciones.js' %}"></script>
     {% include 'ProyectowebApp/slidebar.html' %}
     <main>
         <title>Home - Personal Académico</title>
@@ -761,17 +738,7 @@
         </div>
     </main>
 
-    <footer class="top-footer">
-        <div class="top-footer-content">
-          <p>Información adicional aquí, como enlaces rápidos o redes sociales</p>
-        </div>
-      </footer>
-      
-      <footer class="footer">
-        <div class="footer-content">
-          <p>© 2025 Mi Aplicación Web</p>
-        </div>
-      </footer>
+    {% include 'ProyectowebApp/Footer.html' %}
 
 </body>
 </html>

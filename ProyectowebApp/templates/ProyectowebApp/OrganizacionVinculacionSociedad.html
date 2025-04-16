@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% include 'ProyectowebApp/head.html' %}
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <h1 class="ht">3. Criterio Vinculación con la sociedad</h1>
+            <h2 class="httitle">3.2. Subcriterio Organización de la vinculación con la sociedad</h2>
+            <hr>   
+            <div>
+                <button id="toggle-button" class="toggle-button">☰</button>
+                <button id="showOrganizacionVinculacionSociedad" class="toggle-button"> 
+                    <img src="{% static 'Img/abstract.png' %}" alt="Ver Tablas" class="button-icon">Indicador 21
+                </button>
+            </div>
+        </header>
+
+        {% include 'ProyectowebApp/slidebar.html' %}
+
+        <main>
+            <title>Home - Personal Académico</title>
+                
+        </main>
+
+        {% include 'ProyectowebApp/Footer.html' %}
+    </div>
+
+    <script src="{% static 'Js/Secciones.js' %}"></script>
+</body>
+</html>

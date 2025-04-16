@@ -11,6 +11,16 @@ urlpatterns = [
     path('Contribucion_Investigacion/', views.Contribucion_Investigacion, name='Contribucion_Investigacion'),
     path('InicioSesion/', views.InicioSesion, name='InicioSesion'),
     path('Curriculo/', views.Curriculo, name='Curriculo'),
+    path('PersonalAcedmico/', views.PersonalAcademico, name='PersonalAcademico'),
+    path('Estudiantes/', views.Estudiantes, name='Estudiantes'),
+    path('GestionInvestigacionInnovacion/', views.GestionInvestigacionInnovacion, name='GestionInvestigacionInnovacion'),
+    path('Docencia/', views.Docencia, name='Docencia'),
+    path('VinculacionSociedad/', views.VinculacionSociedad, name='VinculacionSociedad'),
+    path('OrganizacionVinculacionSociedad/', views.OrganizacionVinculacionSociedad, name='OrganizacionVinculacionSociedad'),
+    path('TransferenciaTecnologiaConocimiento/', views.TransferenciaTecnologiaConocimiento, name='TransferenciaTecnologiaConocimiento'),
+    path('Estrategicas_Soporte/', views.Estrategicas_Soporte, name='Estrategicas_Soporte'),
+    path('FuncionesEstrategicas/', views.FuncionesEstrategicas, name='FuncionesEstrategicas'), 
+    path('FuncionesSoporte/', views.FuncionesSoporte, name='FuncionesSoporte'),
 ]
 
 # Esto permitirá que Django sirva archivos de medios durante el desarrollo (cuando DEBUG=True)

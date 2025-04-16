@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.admin import AdminSite
 from django.contrib.staticfiles.storage import staticfiles_storage
 from ProyectowebApp.models import Personal_Academico, Documento, Indicador20
 from import_export import resources

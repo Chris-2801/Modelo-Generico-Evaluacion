@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.template import loader
 from ProyectowebApp.models import (
     Personal_Academico, Documento,Indicador20)
 from ProyectowebApp.models import (Produccion_Cientifica, Produccion_Artistica,
@@ -146,3 +145,33 @@ def InicioSesion(request):
 
 def Curriculo(request):
     return render(request, 'ProyectowebApp/Curriculo.html')
+
+def PersonalAcademico(request): #Subcriterio
+    return render(request, 'ProyectowebApp/PersonalAcademico.html')
+
+def Estudiantes(request): #Subcriterio
+    return render(request, 'ProyectowebApp/Estudiantes.html')
+
+def GestionInvestigacionInnovacion(request): #Subcriterio
+    return render(request, 'ProyectowebApp/GestionInvestigacionInnovacion.html')
+
+def Docencia(request): #Subcriterio
+    return render(request, 'ProyectowebApp/Docencia.html')
+
+def VinculacionSociedad(request): #Subcriterio
+    return render(request, 'ProyectowebApp/VinculacionSociedad.html')
+
+def OrganizacionVinculacionSociedad(request): #Subcriterio
+    return render(request, 'ProyectowebApp/OrganizacionVinculacionSociedad.html')
+
+def TransferenciaTecnologiaConocimiento(request): #Subcriterio
+    return render(request, 'ProyectowebApp/TransferenciaTecnologiaConocimiento.html')
+
+def Estrategicas_Soporte(request): #Subcriterio
+    return render(request, 'ProyectowebApp/Estrategicas_Soporte.html')
+
+def FuncionesEstrategicas(request): #Subcriterio
+    return render(request, 'ProyectowebApp/FuncionesEstrategicas.html')
+
+def FuncionesSoporte(request): #Subcriterio
+    return render(request, 'ProyectowebApp/FuncionesSoporte.html')
