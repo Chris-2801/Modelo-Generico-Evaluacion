@@ -17,72 +17,21 @@ main {margin: 30px;}
 
 /********************************************************* Estilo de la cabecera **************************************************/
 header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;z-index: 1;width: 100vw;}
+#container.sidebar-active {margin-left: 300px;}
 
 /* === Sidebar layout === */
-#sidebar {position: fixed;top: 0;left: -300px;
-  width: 300px;
-  height: 100%;
-  background-color: #424242;
-  transition: left 0.3s ease;
-  z-index: 2;
-}
-
-#sidebar.active {
-  left: 0;
-}
-
-#container.sidebar-active {
-  margin-left: 300px;
-}
-
-/* === Lista y enlaces === */
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin: 20px 0;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 10px;
-  background-color: #424242;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-.sidebar ul li a:hover {
-  background-color: #616161;
-}
+#sidebar {position: fixed;top: 0;left: -300px;width: 300px;height: 100%;background-color: #424242;transition: left 0.3s ease;z-index: 2;}
+#sidebar.active {left: 0;}
+.sidebar ul {list-style: none;padding: 0;}
+.sidebar ul li {margin: 20px 0;}
+.sidebar ul li a {color: white;text-decoration: none;display: block;padding: 10px;background-color: #424242;border-radius: 5px;font-size: 14px;}
+.sidebar ul li a:hover {background-color: #616161;}
 
 /* Submenús */
-.sidebar ul ul.submenu {
-  display: none;
-  padding-left: 20px;
-}
-
-.sidebar ul ul.submenu.show {
-  display: block;
-}
-
-/* Flecha toggle */
-.toggle-submenu {
-  cursor: pointer;
-  float: right;
-  font-size: 12px;
-  margin-left: 5px;
-  transition: transform 0.3s ease;
-  color: white;
-}
-
-.toggle-submenu.rotated {
-  transform: rotate(90deg);
-}
-
+.sidebar ul ul.submenu {display: none;padding-left: 20px;}
+.sidebar ul ul.submenu.show {display: block;}
+.toggle-submenu {cursor: pointer;float: right;font-size: 12px;margin-left: 5px;transition: transform 0.3s ease;color: white;}
+.toggle-submenu.rotated {transform: rotate(90deg);}
 
 /***************************************************** Estilo para los botones de la página *********************************************/
 button {margin: 3px;padding: 1px 2px;background-color: #007BFF;color: white;border: none;border-radius: 2px;cursor: pointer;width: auto;}
@@ -148,30 +97,9 @@ summary:hover {color: #007bff; }
 
 /************************************************************* Estilo imagen a un lado texto al otro **************************************************/
 
-.contenedor-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 50px;
-  flex-wrap: wrap; /* para hacerlo responsive */
-}
+.contenedor-flex {display: flex;align-items: center;justify-content: space-between;gap: 50px;flex-wrap: wrap;}
+.texto-izquierda {flex: 1;}
+.imagen-derecha img {width: 390px;height: auto;}
 
-.texto-izquierda {
-  flex: 1;
-}
-
-.imagen-derecha img {
-  width: 390px;
-  height: auto;
-}
-
-@media (max-width: 768px) {
-  .contenedor-flex {
-      flex-direction: column;
-      text-align: center;
-  }
-
-  .imagen-derecha img {
-      width: 50%;
-  }
-}
+@media (max-width: 768px) {.contenedor-flex {flex-direction: column;text-align: center;}
+.imagen-derecha img {width: 50%;}}

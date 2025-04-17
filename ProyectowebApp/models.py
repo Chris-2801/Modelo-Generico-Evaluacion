@@ -163,7 +163,7 @@ class Documento(models.Model):
 
 
     class Meta:
-        verbose_name_plural = "Fuentes de Información: Indicador 19"
+        verbose_name_plural = "Fuentes de Información: Contribución de la investigación a la carrera"
 
     def __str__(self):
         return f"{self.titulo} {self.ci1} - {self.Año_Base_datos}"
@@ -224,7 +224,7 @@ class Indicador20(models.Model):
         blank=True
     )
     class Meta:
-        verbose_name_plural = "Fuentes de Información: Contribución de la investigación a la carrera"
+        verbose_name_plural = "Fuentes de Información: Indicador 20"
 
 def Produccion_Cientifica(anio_inicio, anio_fin):
     

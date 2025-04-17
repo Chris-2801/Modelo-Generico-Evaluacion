@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head> {% include 'ProyectowebApp/head.html' %} </head>
+<head> {% include 'ProyectowebApp/head.html' %} 
+    <link rel="stylesheet" href="{% static 'stylesPDF.css' %}">
+    {% include 'ProyectowebApp/slidebar.html' %}
+    <script src="{% static 'Js\Secciones.js' %}"></script>
+    <script src="{% static 'Js\syllabus.js' %}"></script>
+</head>
 
 <body>
     <div id="container">
@@ -38,8 +43,6 @@
             </button>
         </div>
     </header>
-    {% include 'ProyectowebApp/slidebar.html' %}
-    <script src="{% static 'Js\Secciones.js' %}"></script>
     <main>
         <title>Home - Personal Académico</title>
         <!-- Sección Introductoria -->
@@ -94,23 +97,252 @@
                 años y seis meses previo al inicio del proceso de evaluación.</h4>
             <hr>
         </div>
+
         <div id="ProyectoCurricularSection" class="hidden"> 
             <p>Casa</p>
         </div>
+
         <div id="MallaCurricularSection" class="hidden"> 
         </div>
+        
         <div id="SyllabusSection" class="hidden">
+            <h1 class="ht2">Syllabus - Planificación Micro-curricular</h1>
+            <hr>
+            <h3>1. DATOS INFORMATIVOS</h3>
+            <form id="Datos-form">
+                <table border="1" style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+
+                    <tr><td colspan="4"><div class="form-group"><label for="facultad">FACULTAD:</label>
+                        <input type="text" id="facultad" style="width: 100%;" value="FACULTAD DE INGENIERIA EN GEOLOGÍA, MINAS, PETRÓLEOS Y AMBIENTAL"></div></td></tr>
+                
+                    <tr><td><label for="carrera">CARRERA:</label></td>
+                        <td><input type="text" id="carrera" style="width: 100%;" value="GEOLOGIA"></td>
+                        <td><label for="modalidad">MODALIDAD:</label></td>
+                        <td><input type="text" id="modalidad" style="width: 100%;" value="PRESENCIAL"></td></tr>
+                
+                    <tr><td><label for="asignatura">ASIGNATURA O EQUIVALENTE:</label></td>
+                        <td><input type="text" id="asignatura" style="width: 100%;" value="ENERGIAS ALTERNATIVAS"></td>
+                        <td><label for="codigo">CÓDIGO:</label></td>
+                        <td><input type="text" id="codigo" style="width: 100%;" value="IGP09PPP04"></td></tr>
+                
+                    <tr><td colspan="4"><div class="form-group"><label for="UnidadCurricular">UNIDAD DE ORGANIZACIÓN CURRICULAR:</label>
+                        <input type="text" id="UnidadCurricular" style="width: 100%;" value="PROFESIONAL"></div></td></tr>
+
+                    <tr><td colspan="4"><div class="form-group"><label>CAMPO DE FORMACIÓN:</label>
+                        <input type="text" id="campo-formacion" style="width: 50%;" value="PRAXIS PROFESIONAL"></div></td></tr>
+
+                    <tr><td colspan="2"><div class="form-group"><label>ITINERARIO:</label>
+                        <input type="text" id="ITINERARIO" style="width: 50%;" value=""></div></td>
+                        <td style="text-align: center;"><label for="itinerario_si">
+                            <input type="checkbox" id="itinerario_si" name="itinerario" value="SI">SI</label></td>
+                        <td style="text-align: center;"><label for="itinerario_no">
+                            <input type="checkbox" id="itinerario_no" name="itinerario" value="NO">NO</label></td></tr>
+
+                    <tr><td colspan="4"><div class="form-group"><label for="periodo">PERÍODO ACADÉMICO:</label>
+                        <input type="text" id="periodo" value="OCTUBRE 2024 – MARZO 2025"></div></td></tr>
+
+                    <tr><td><label for="semestre">PERÍODO ACADÉMICO (semestre):</label></td>
+                        <td><input type="text" id="semestre" value="NOVENO SEMESTRE"></td>
+                        <td><label for="ejecucion">PERÍODO DE EJECUCIÓN (Tiempo):</label></td>
+                        <td><input type="text" id="ejecucion" value="16 SEMANAS"></td></tr>
+
+                    <tr><td colspan="4"><div class="form-group"><label for="proyecto">PROYECTO INTEGRADOR DE SABERES:</label>
+                        <input type="text" id="proyecto" value=""></div></td></tr>
+                </table>
+
+                <table>
+                    <tr><td><label for="PREREQUISITOS">PRE-REQUISITOS:</label></td>
+                        <td><label for="asignaturaEquivalentes">Asignatura / o sus equivalentes:</label></td>
+                        <td><textarea id="asignaturaEquivalentesT"></textarea></td>
+                        <td><label for="codigo">CÓDIGO:</label></td>
+                        <td><textarea id="codigoeqq"></textarea></td></tr>
+
+                    <tr><td><label for="COREQUISITOS">CO-REQUISITOS:</label></td>
+                        <td><label for="asignaturaCO">Asignatura / o sus equivalentes:</label></td>
+                        <td><textarea id="asignaturaCOT"></textarea></td>
+                        <td><label for="codigoCO">CÓDIGO:</label></td>
+                        <td><textarea id="codigoCO"></textarea></td></tr>
+                </table>
+                
+                <table border="1" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <!-- Fusión vertical de la primera columna (2 filas) -->
+                        <td rowspan="2" style="vertical-align: middle;"><label for="organizacion">ORGANIZACIÓN DEL APRENDIZAJE</label></td>
+                        <td><label for="componente">Componente Docencia</label></td><td><div class="form-group">
+                            <label for="numero">#hrs: </label><input type="number" id="docencia-hrs" value="32"></div></td>
+                        <td><label for="practicaexp">Práctica, aplicación y experimentación</label></td>
+                        <td><div class="form-group"><label for="numero">#hrs: </label><input type="number" id="practica-hrs" value="32"></div></td>
+                        <td><label for="componentedocencia">Componente Trabajo Autónomo (Tutorías R 2009)</label></td>
+                        <td><div class="form-group"><label for="numero">#hrs: </label><input type="number" id="autonomo-hrs" value="32"></div></td></tr>
+                
+                    <tr><td colspan="4"><label for="componente">TOTAL HORAS ASIGNATURA O EQUIVALENTES</label></td>
+                        <td colspan="2"><div class="form-group"><label for="numero">#hrs: </label>
+                            <input type="number" id="hrs-total" value="80"></div></td></tr>
+                </table>
+
+                <table border="1" style="border-collapse: collapse; width: 100%;">
+                    <tr><td rowspan="5" style="text-align: center; vertical-align: middle;">
+                        <label for="organizacion">DETALLE DE HORAS DE TUTORÍA</label></td>
+                        <td colspan="2" style="text-align: center;"><label for="PRESENCIALES">PRESENCIALES</label></td>
+                        <td colspan="2" style="text-align: center;"><label for="VIRTUALES">VIRTUALES</label></td></tr>
+                
+                    <tr><td style="text-align: center;"><label for="IndP">INDIVIDUALES</label></td>
+                        <td style="text-align: center;"><label for="GrupP">GRUPALES</label></td>
+                        <td style="text-align: center;"><label for="IndV">INDIVIDUALES</label></td>
+                        <td style="text-align: center;"><label for="GrupV">GRUPALES</label></td></tr>
+                
+                    <tr><td><div class="form-group"><input type="number" id="hrsIP" value=""></div></td>
+                        <td><div class="form-group"><input type="number" id="hrsGP" value=""></div></td>
+                        <td><div class="form-group"><input type="number" id="hrsIV" value=""></div></td>
+                        <td><div class="form-group"><input type="number" id="hrsGV" value=""></div></td></tr>
+                
+                    <tr><td colspan="2"><div class="form-group"><label for="TotP">Total Presenciales: </label>
+                        <input type="number" id="Tot_P" value=""></div> </td>
+                        <td colspan="2"><div class="form-group"><label for="TotV">Total Virtuales: </label>
+                        <input type="number" id="Tot_V" value=""></div></td></tr>
+                </table>
+            </form>
+            
+            <form id="perfil-form">
+                <table>
+                    <tr><td colspan="2"><label for="aportesperfil">APORTES AL PERFIL DE EGRESO</label></td></tr>
+                    <tr><td><label for="ResulApre">Resultados de Aprendizaje del Perfil de Egreso</label></td>
+                        <td><label for="ResulApre">Resultados de Aprendizaje integrador de la Asignatura o su equivalente</label></td></tr>
+                    <tr><td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td></tr>
+                    <tr><td><label>CARACTERIZACIÓN DE LA ASIGNATURA (APORTE AL ESTUDIO DE PERTINENCIA, ROL ESENCIAL DE LA ASIGNATURA, ARTICULACIÓN CON LA INVESTIGACIÓN Y LAS PRÁCTICAS PRE PROFESIONALES)</label></td>
+                        <td><textarea class="large-textarea"></textarea></td></tr>
+                    <tr><td><label>METODOLOGÍAS DE ENSEÑANZA APRENDIZAJE (REGULARIDADES DADA LA NATURALEZA DE LA CARRERA Y LA ASIGNATURA EN CUANTO A MÉTODOS, TÉCNICAS Y RECURSOS DIDÁCTICOS CON VISIÓN HACIA LA INNOVACIÓN)</label></td>
+                        <td><textarea class="large-textarea"></textarea></td></tr>
+                </table>
+            </form>
+
+            <h3>2. EVALUACIÓN DURANTE PERÍODO ACADÉMICO (Sobre 20 puntos)</h3>
+            <form id="evaluacion-form">
+                <table>
+                    <tr><th>INDICADOR</th><th>NOTA SOBRE 20</th><th>PORCENTAJE DE LA NOTA FINAL</th><th>PONDERACIÓN</th></tr>
+                    <tr><td><label>EVALUACIÓN FORMATIVA INDIVIDUAL</label></td>
+                        <td><div class="form-group"><input type="number" id="EvInd" value="20"></div></td>
+                        <td><div class="form-group"><input type="text" id="Porcen" value="35%"></div></td>
+                        <td><div class="form-group"><input type="text" id="Pond" value="7 puntos"></div></td></tr>
+                    <tr><td><label>EVALUACIÓN FORMATIVA COLABORATIVA</label></td>
+                        <td><div class="form-group"><input type="number" id="EvInd" value="20"></div></td>
+                        <td><div class="form-group"><input type="text" id="Porcen1" value="25%"></div></td>
+                        <td><div class="form-group"><input type="text" id="Pond1" value="5 puntos"></div></td></tr>
+                    <tr><td><label>EVALUACIÓN SUMATIVA INTERMEDIA</label></td>
+                        <td><div class="form-group"><input type="number" id="EvInd" value="20"></div></td>
+                        <td><div class="form-group"><input type="text" id="Porcen2" value="10%"></div></td>
+                        <td><div class="form-group"><input type="text" id="Pond2" value="2 puntos"></div></td></tr>
+                    <tr><td><label>EVALUACIÓN SUMATIVA TOTAL</label></td>
+                        <td><div class="form-group"><input type="number" id="EvInd" value="20"></div></td>
+                        <td><div class="form-group"><input type="text" id="Porcen3" value="30%"></div></td>
+                        <td><div class="form-group"><input type="text" id="Pond3" value="6 puntos"></div></td></tr>
+                    <tr><td><label>TOTAL</label></td>
+                        <td><div class="form-group"><input type="number" id="EvInd" value="20"></div></td>
+                        <td><div class="form-group"><input type="text" id="PorcenT" value="100%"></div></td>
+                        <td><div class="form-group"><input type="text" id="Pond" value="20 puntos"></div></td></tr>
+                </table>
+            </form>
+
+            <h3>3. RECURSOS BIBLIOGRÁFICOS</h3>
+            <form id="recursos-form">
+                <table>
+                  <thead>
+                    <tr><td rowspan="2" style="text-align: center; vertical-align: middle;">
+                        <label>BIBLIOGRAFÍA POR UNIDAD/TEMA/CAPÍTULO</label></td>
+                        <td colspan="2" style="text-align: center;">FÍSICA</td>
+                        <td colspan="2" style="text-align: center;">VIRTUAL</td></tr>
+                    <tr><td><label>TÍTULO/AUTOR /AÑO</label></td><td><label>EDITORIAL</label></td><td><label>TÍTULO/AUTOR /AÑO</label></td>
+                        <td><label>URL</label></td></tr>
+                  </thead>
+              
+                  <tbody id="recurso-body">
+                    <tr><td><input type="text" id="bas" value="BÁSICA"><button type="button" class="remove-row">Eliminar</button></td>
+                        <td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td></tr>
+                    <tr><td><input type="text" id="Comp" value="COMPLEMENTARIA"><button type="button" class="remove-row">Eliminar</button></td>
+                        <td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td>
+                        <td><textarea class="large-textarea"></textarea></td></tr>
+                  </tbody>
+              
+                  <tfoot>
+                    <tr><td colspan="5" style="text-align: right;"><button type="button" id="add-recurso">Agregar</button></td></tr>
+                  </tfoot>
+                </table>
+              </form>
+            
+            <h3>4. MICROCURRÍCULO</h3>
+            <form id="microcurriculo-form">
+                <div id="capitulo-container">
+                  <div class="capitulo section">
+                    <table>
+                      <tr><td colspan="6"><label>DESCRIPCIÓN MICROCURRICULAR POR UNIDAD/TEMA/CAPÍTULO</label></td></tr>
+                      <tr><td><label>UNIDAD/TEMA/CAPÍTULO</label></td><td><div class="form-group"><label for="no">No. </label>
+                        <input type="number" name="no" value=""></div></td>
+                        <td colspan="4"><div class="form-group"><label for="Nomb">NOMBRE: </label><input type="text" name="NombImp" value=""></div></td></tr>
+              
+                      <tr><td rowspan="2" colspan="2"><label>ESCENARIOS DE APRENDIZAJE</label></td>
+                        <td>AULA</td><td>LABORATORIOS /TALLERES /OTROS</td><td>VIRTUAL</td>
+                        <td>INSTITUCIÓN RECEPTORA PARA PPP / PVS</td></tr>
+                      <tr><td><input type="text" value=""></td><td><input type="text" value=""></td>
+                        <td><input type="text" value=""></td><td><input type="text" value=""></td></tr>
+                      <tr><td colspan="2"><label>RESULTADO DE APRENDIZAJE</label></td>
+                        <td colspan="4"><textarea class="large-textarea"></textarea></td></tr>
+                      <tr><td colspan="6">CONTENIDOS DE LA ASIGNATURA O SUS EQUIVALENTES ESTRUCTURADOS POR UNIDAD, TEMA Y CAPÍTULO</td></tr>
+                      <tr><td><label>SEMANA</label><button type="button" id="add-semana" class="add-semana">Agregar semana</button>
+                        <button type="button" id="eliminate-capitulo" class="eliminate-capitulo">Eliminar capítulo</button></td>
+                        <td><label>CONTENIDO</label></td>
+                        <td><label>COMPONENTE DOCENTE</label></td>
+                        <td><label>PRÁCTICAS DE APLICACIÓN Y EXPERIMENTACIÓN</label></td>
+                        <td><label>TRABAJO AUTÓNOMO</label></td>
+                        <td><label>EVALUACIÓN</label></td></tr>
+              
+                      <tbody class="semana-body">
+                        <tr><td><input type="text" value=""></td><td><textarea class="large-textarea"></textarea></td>
+                          <td><textarea class="large-textarea"></textarea></td><td><textarea class="large-textarea"></textarea></td>
+                          <td><textarea class="large-textarea"></textarea></td><td><textarea class="large-textarea"></textarea></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <button type="button" id="add-capitulo" class="add-capitulo">Agregar capítulo</button>
+            </form>
+              
+            <h3>5. REVISIÓN Y APROBACIÓN</h3>
+            <form id="aprobacion-form">
+                <table>
+                    <tr><th>ELABORADO POR</th><th>COORDINADOR DE ÁREA</th><th>REVISADO</th><th>APROBADO</th></tr>
+                    <tr><td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label>
+                    <input type="text" value="Docente"></td>
+                        <td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label><input type="text" value="Docente"></td>
+                        <td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label><input type="text" value=""></td>
+                        <td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label><input type="text" value="DIRECTOR DE "></td></tr>
+                </table>
+            </form>
+                
+            <div class="syllabus-actions">
+                <button id="generar-pdf" class="action-button">Generar PDF</button>
+                <button id="limpiar-formularios" class="action-button">Limpiar Formularios</button>
+            </div>
+
         </div>
+
         <div id="MetodologiaRecursosAprendizajeSection" class="hidden">
         </div>
+
         <div id="EscenariosPracticasFormativasSection" class="hidden">
         </div>
+        
         <div id="TACSection" class="hidden">
         </div>
-    </div>
+
     </main>
 
-    {% include 'ProyectowebApp/Footer.html' %}
-    
-    </body>
+{% include 'ProyectowebApp/Footer.html' %}
+
+</body>
 </html>
