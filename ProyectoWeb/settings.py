@@ -81,7 +81,7 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ProyectoWeb',
@@ -90,12 +90,17 @@ WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
         'HOST': 'localhost',
         'PORT': '5432',
     }
-}'''
+}
+
 
 import dj_database_url
 '''External Database URL'''
-DATABASES = {
+'''DATABASES = {
     'default': dj_database_url.config(default='postgresql://base_de_datos_8ai4_user:sTBty5hLmCSMc0h5gJf8SyPsBGnDUJTB@dpg-cvqvlomuk2gs73c3d860-a.oregon-postgres.render.com/base_de_datos_8ai4')
+}'''
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgresql://u4b8jxfhjnsjbu72jhbd:NGHzfFYQtyC93FI6ixLhwtGOLvNlmR@bronlrovaunphzkf2c9l-postgresql.services.clever-cloud.com:50013/bronlrovaunphzkf2c9l')
 }
 
 '''DATABASES = {

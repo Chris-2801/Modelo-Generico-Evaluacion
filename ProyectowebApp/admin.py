@@ -9,26 +9,51 @@ admin.site.site_header = ("Universidad Central del Ecuador")  # Título en la pa
 admin.site.site_title = ("Registro")  # Título en la pestaña del navegador
 admin.site.index_title = ("Registro")  # Título en la página de inicio del admin
 
-# Definir el recurso
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+from django.contrib.auth.models import User
+from django.contrib import admin
+
+from import_export import resources
+from django.contrib.auth.models import User
+
 class UserResource(resources.ModelResource):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'password')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'is_superuser', 'password')
         import_id_fields = ('username',)
+        skip_unchanged = True  # Evita actualizar si no hay cambios
+        report_skipped = True
+        use_bulk = True  # Opcional, para eficiencia
 
-    # Convertir contraseñas en texto plano a formato hasheado
+    def get_instance(self, instance_loader, row):
+        """
+        Override para devolver None si ya existe un usuario con ese username,
+        lo que evita que se actualice.
+        """
+        username = row.get('username')
+        if User.objects.filter(username=username).exists():
+            return None  # Evita la actualización
+        return super().get_instance(instance_loader, row)
+
     def before_import_row(self, row, **kwargs):
+        # Si se está importando un nuevo usuario, hashea la contraseña
         raw_password = row.get('password')
         if raw_password:
             temp_user = User()
             temp_user.set_password(raw_password)
             row['password'] = temp_user.password
 
-# Reemplazar el admin por defecto del modelo User
+# Admin personalizado para el modelo User
 class CustomUserAdmin(ImportExportModelAdmin):
     resource_class = UserResource
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_superuser')
     search_fields = ('username', 'email')
+
+# Desregistrar y volver a registrar el modelo User con el nuevo admin
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
+
 
 # Desregistrar y registrar de nuevo el modelo User
 admin.site.unregister(User)

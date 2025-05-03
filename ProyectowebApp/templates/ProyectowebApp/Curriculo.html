@@ -207,13 +207,13 @@
                 <table>
                     <tr><td colspan="2"><label for="aportesperfil">APORTES AL PERFIL DE EGRESO</label></td></tr>
                     <tr><td><label for="ResulApre">Resultados de Aprendizaje del Perfil de Egreso</label></td>
-                        <td><label for="ResulApre">Resultados de Aprendizaje integrador de la Asignatura o su equivalente</label></td></tr>
-                    <tr><td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td></tr>
+                        <td><label for="ResulApreInt">Resultados de Aprendizaje integrador de la Asignatura o su equivalente</label></td></tr>
+                    <tr><td><textarea class="large-textarea" id="ResulApre"></textarea></td>
+                        <td><textarea class="large-textarea" id="ResulApreInt"></textarea></td></tr>
                     <tr><td><label>CARACTERIZACIÓN DE LA ASIGNATURA (APORTE AL ESTUDIO DE PERTINENCIA, ROL ESENCIAL DE LA ASIGNATURA, ARTICULACIÓN CON LA INVESTIGACIÓN Y LAS PRÁCTICAS PRE PROFESIONALES)</label></td>
-                        <td><textarea class="large-textarea"></textarea></td></tr>
+                        <td><textarea class="large-textarea" id="caracterizacion-asignatura"></textarea></td></tr>
                     <tr><td><label>METODOLOGÍAS DE ENSEÑANZA APRENDIZAJE (REGULARIDADES DADA LA NATURALEZA DE LA CARRERA Y LA ASIGNATURA EN CUANTO A MÉTODOS, TÉCNICAS Y RECURSOS DIDÁCTICOS CON VISIÓN HACIA LA INNOVACIÓN)</label></td>
-                        <td><textarea class="large-textarea"></textarea></td></tr>
+                        <td><textarea class="large-textarea" id="metodologias-enseñanza"></textarea></td></tr>
                 </table>
             </form>
 
@@ -248,32 +248,48 @@
             <form id="recursos-form">
                 <table>
                   <thead>
-                    <tr><td rowspan="2" style="text-align: center; vertical-align: middle;">
-                        <label>BIBLIOGRAFÍA POR UNIDAD/TEMA/CAPÍTULO</label></td>
-                        <td colspan="2" style="text-align: center;">FÍSICA</td>
-                        <td colspan="2" style="text-align: center;">VIRTUAL</td></tr>
-                    <tr><td><label>TÍTULO/AUTOR /AÑO</label></td><td><label>EDITORIAL</label></td><td><label>TÍTULO/AUTOR /AÑO</label></td>
-                        <td><label>URL</label></td></tr>
+                    <tr>
+                      <td rowspan="2" style="text-align: center; vertical-align: middle;">
+                        <label>BIBLIOGRAFÍA POR UNIDAD/TEMA/CAPÍTULO</label>
+                      </td>
+                      <td colspan="2" style="text-align: center;">FÍSICA</td>
+                      <td colspan="2" style="text-align: center;">VIRTUAL</td>
+                    </tr>
+                    <tr>
+                      <td><label>TÍTULO/AUTOR /AÑO</label></td>
+                      <td><label>EDITORIAL</label></td>
+                      <td><label>TÍTULO/AUTOR /AÑO</label></td>
+                      <td><label>URL</label></td>
+                    </tr>
                   </thead>
-              
                   <tbody id="recurso-body">
-                    <tr><td><input type="text" id="bas" value="BÁSICA"><button type="button" class="remove-row">Eliminar</button></td>
-                        <td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td></tr>
-                    <tr><td><input type="text" id="Comp" value="COMPLEMENTARIA"><button type="button" class="remove-row">Eliminar</button></td>
-                        <td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td>
-                        <td><textarea class="large-textarea"></textarea></td></tr>
+                    <tr>
+                      <td>
+                        <select class="tipo-recurso">
+                          <option value="BÁSICA" selected>BÁSICA</option>
+                          <option value="COMPLEMENTARIA">COMPLEMENTARIA</option>
+                        </select>
+                        <!-- Flechas para mover hacia arriba y hacia abajo -->
+                        <span class="arrow move-up">&#8593;</span>
+                        <span class="arrow move-down">&#8595;</span>
+                        <button type="button" class="remove-row">Eliminar</button>
+                      </td>
+                      <td><textarea class="large-textarea"></textarea></td>
+                      <td><textarea class="large-textarea"></textarea></td>
+                      <td><textarea class="large-textarea"></textarea></td>
+                      <td><textarea class="large-textarea"></textarea></td>
+                    </tr>
                   </tbody>
-              
                   <tfoot>
-                    <tr><td colspan="5" style="text-align: right;"><button type="button" id="add-recurso">Agregar</button></td></tr>
+                    <tr>
+                      <td colspan="5" style="text-align: right;">
+                        <button type="button" id="add-recurso">Agregar</button>
+                      </td>
+                    </tr>
                   </tfoot>
                 </table>
               </form>
+            
             
             <h3>4. MICROCURRÍCULO</h3>
             <form id="microcurriculo-form">
@@ -316,11 +332,11 @@
             <form id="aprobacion-form">
                 <table>
                     <tr><th>ELABORADO POR</th><th>COORDINADOR DE ÁREA</th><th>REVISADO</th><th>APROBADO</th></tr>
-                    <tr><td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label>
+                    <tr><td><input type="text" id="elaborado-fecha" value="FECHA: dia/mes/año"><input type="text" id="elaborado-por" value="Nombre"><div class="firma-line"></div><label>FIRMA:</label>
                     <input type="text" value="Docente"></td>
-                        <td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label><input type="text" value="Docente"></td>
-                        <td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label><input type="text" value=""></td>
-                        <td><input type="text" value=""><div class="firma-line"></div><label>FIRMA:</label><input type="text" value="DIRECTOR DE "></td></tr>
+                        <td><input type="text" id="coordinador-fecha" value="FECHA: dia/mes/año"><input type="text" id="coordinador-por" value="Nombre"><div class="firma-line"></div><label>FIRMA:</label><input type="text" value="Docente"></td>
+                        <td><input type="text" id="revisado-fecha" value="FECHA: dia/mes/año"><input type="text" id="revisado-por" value="Nombre"><div class="firma-line"></div><label>FIRMA:</label><input type="text" value=""></td>
+                        <td><input type="text" id="aprobado-fecha" value="FECHA: dia/mes/año"><input type="text" id="aprobado-por" value="Nombre"><input type="text" id="Razon" value="RAZÓN: Aprobado ad Referendum 2025-03-28"><div class="firma-line"></div><label>FIRMA:</label><input type="text" value="DIRECTOR DE "></td></tr>
                 </table>
             </form>
                 

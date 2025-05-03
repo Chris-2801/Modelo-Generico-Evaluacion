@@ -31,4 +31,43 @@ button:hover {background-color: #005a8c;}
   
 .firma-line {border-top: 1px solid #000;width: 80%;margin: 5px 0;}
 .hidden {display: none;}
-  
+
+/**********************************************************************************************************************/
+
+.pdf-error-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  background: #fff3f3;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 90%;
+  width: 400px;
+  font-family: Arial, sans-serif;
+}
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Flechas para mover hacia arriba y hacia abajo */
+.arrow {
+  font-size: 20px; /* Tamaño de la flecha */
+  margin-right: 10px; /* Espacio entre la flecha y el botón eliminar */
+  cursor: pointer; /* Cambiar el cursor para indicar que es interactivo */
+  vertical-align: middle; /* Alineación vertical de las flechas */
+}
+
+.move-up {
+  color: green;
+}
+
+.move-down {
+  color: red;
+}
