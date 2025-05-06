@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{% static 'styles_VistaP.css' %}">
     <title>Inicio de Sesión</title>
 </head>
 <body>
-    <div class="login-body">
+    <div class="login-page">
         <div class="login-container">
+            <img src="{% static 'Img/Logo_UCE.png' %}" alt="Logo UCE" class="logo-img"/>
             <h1>Iniciar Sesión</h1>
-            <!-- Asegúrate de que la URL en action esté correctamente configurada -->
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="username">Usuario (Correo Electrónico)</label>
+                    <label for="username">Usuario</label>
                     <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
                 </div>
                 <div class="form-group">
@@ -23,10 +23,13 @@
                     <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
                 </div>
                 <button type="submit" class="btn">Iniciar Sesión</button>
-                <div class="forgot-password">
-                    <a href="/reset-password">¿Olvidaste tu contraseña?</a>
+
+                <div class="form-links">
+                    <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+                    <a href="{% url 'password_change' %}">Cambiar contraseña</a>
                 </div>
             </form>
+
             {% if form.errors %}
                 <div class="error-messages">
                     <ul>
@@ -42,4 +45,3 @@
     </div>
 </body>
 </html>
-

@@ -15,8 +15,15 @@ h4 {color: #434343;margin-bottom: 14px;font-size: 14px;}
 .justificado {text-align: justify;}
 main {margin: 30px;}
 
+hr {
+  border: none;
+  height: 2px;
+  background-color: black;
+  margin: 2; /* opcional: elimina espacio extra */
+}
+
 /********************************************************* Estilo de la cabecera **************************************************/
-header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;z-index: 1;width: 100vw;}
+header {background-color: #004876;color: white;padding: 10px;position: relative;z-index: 1;width: 100vw;}
 #container.sidebar-active {margin-left: 300px;}
 
 /* === Sidebar layout === */
@@ -34,16 +41,15 @@ header {background-color: #1f1f3e;color: white;padding: 10px;position: relative;
 .toggle-submenu.rotated {transform: rotate(90deg);}
 
 /***************************************************** Estilo para los botones de la página *********************************************/
-button {margin: 3px;padding: 1px 2px;background-color: #007BFF;color: white;border: none;border-radius: 2px;cursor: pointer;width: auto;}
-button:hover {background-color: #0056b3;}
+/* Botón general */
+button {margin: 3px; padding: 1px 2px; background-color: #004876;color: white;border: none;border-radius: 2px;cursor: pointer;width: auto;}
+button:hover {background-color: #004876;}
 
-.toggle-button {background-color: #1f1f3e; color: white; border: none; padding: 1px 2px; margin: 0 5px; cursor: pointer; font-size: 14px;} 
-.toggle-button:hover {background-color: #1f1f3e;font-size: 15px;}
+.toggle-button {background-color: #004876;color: white;border: none;padding: 1px 2px;margin: 0 5px;cursor: pointer;font-size: 14px;}
+.toggle-button:hover {color: yellow; background-color: #004876;}
+.toggle-button:focus {outline: none;}
 
-.toggle-button:active {background-color: #007BFF; color: white; border-color: #0056b3;}
-.toggle-button:focus {outline: none; box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);}
-/* Símbolo debajo del texto */
-.button-icon {width: 1.1em;  height: 1.1em;margin-right: 5px; vertical-align: middle;filter: invert(1);}
+.button-icon {width: 1.1em;height: 1.1em;margin-right: 5px;vertical-align: middle;filter: invert(1);}
 
 /************************************************************* Estilo para las tablas **************************************************/
 select {width: 100%;padding: 10px;margin-bottom: 10px;border-radius: 4px;border: 1px solid #ccc;background-color: #f9f9f9;transition: border 0.3s ease;}
@@ -82,7 +88,7 @@ tr:hover {background-color: white;} /* Resaltar filas al pasar el mouse */
 a {color: #1a237e;text-decoration: none} a:hover {text-decoration: underline;}
 
 /* Nuevo pie de página sobre el anterior */
-.top-footer {background-color: #1f1f3e; color: white;text-align: center;padding: 40px; font-size: 1rem; position: relative;z-index: 2;}
+.top-footer {background-color: #004876; color: white;text-align: center;padding: 40px; font-size: 1rem; position: relative;z-index: 2;}
   
   .top-footer p {margin: 0;}
   

@@ -10,6 +10,26 @@ from ProyectowebApp.models import graficar_documentos, graficar_ipa
 import json 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
+
+from django.shortcuts import render
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+
+def custom_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('/admin/')  # Redirigir al admin después de iniciar sesión
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, 'ProyectowebApp/InicioSesion.html', {'form': form})
+
+class CustomLoginView(LoginView):
+    template_name = 'InicioSesion.html'
 
 def Indicador3(request):
     return render(request, 'ProyectowebApp/Indicador3.html')

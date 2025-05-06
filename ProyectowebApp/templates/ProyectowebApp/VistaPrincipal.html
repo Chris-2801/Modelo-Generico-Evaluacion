@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles_VistaP.css' %}">
-    <title>Evaluación del entorno de aprendizaje</title>
 
 </head>
 <body>
 
 <header>
-    <div class="logo">Dribbble Clone</div>
-    <nav>
-        <a href="#">Find Talent</a>
-        <a href="#">Inspiration</a>
-        <a href="#">Go Pro</a>
-        <a href="{% url 'InicioSesion' %}">Inicio Sesión</a>
-    </nav>
+    <div class="logo">
+        <img src="{% static 'Img/Logo_UCE.png' %}" alt="UCE">
+        <span>UCE</span>
+    </div>
+    <div class="titulo">Modelo genérico para la evaluación del entorno de aprendizaje de carreras de grado</div>
+    <nav> <a href="{% url 'InicioSesion' %}">Inicio Sesión</a> </nav>
 </header>
-¿<nav class="navbar">
+<hr>
+<nav class="navbar">
     <ul class="navbar-menu">
         <li><a href="{% url 'Curriculo' %}">Curriculo</a></li>
         <li><a href="#portafolio">Docencia</a></li>
@@ -29,19 +28,20 @@
     </ul>
 </nav>
 
-
 <section class="main-banner">
-
-    <h1>Modelo genérico para la evaluación del entorno de aprendizaje de carreras de grado</h1>
-
-    
     <p>Millions of designers and agencies showcase their work here. Discover, learn, and get inspired.</p>
     <div class="search-bar">
         <input type="text" placeholder="Search...">
         <button>Search</button>
     </div>
+   <div style="display: flex; justify-content: center; gap: 20px;">
+    <img src="{% static 'Img/flujograma.svg' %}" alt="Imagen MGE 1" style="width: 30%;">
+    <img src="{% static 'Img/Portada.svg' %}" alt="Imagen MGE 2" style="width: 30%;">
+</div>
     
 </section>
+
+{% include 'ProyectowebApp/Footer.html' %}
 
 </body>
 </html>

@@ -1,26 +1,19 @@
 from django.contrib import admin
-from django.contrib.staticfiles.storage import staticfiles_storage
+from django.contrib.auth.models import User
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from ProyectowebApp.models import Personal_Academico, Documento, Indicador20
-from import_export import resources
-from django.contrib.auth.models import User
-from import_export.admin import ImportExportModelAdmin
 
-admin.site.site_header = ("Universidad Central del Ecuador")  # Título en la parte superior
-admin.site.site_title = ("Registro")  # Título en la pestaña del navegador
-admin.site.index_title = ("Registro")  # Título en la página de inicio del admin
+# Personalización de la interfaz del administrador
+admin.site.site_header = "Universidad Central del Ecuador"
+admin.site.site_title = "Registro"
+admin.site.index_title = "Registro"
 
-from import_export import resources
-from import_export.admin import ImportExportModelAdmin
-from django.contrib.auth.models import User
-from django.contrib import admin
-
-from import_export import resources
-from django.contrib.auth.models import User
-
+# Crear el recurso para importar/exportar el modelo User
 class UserResource(resources.ModelResource):
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'is_superuser', 'password')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'password')
         import_id_fields = ('username',)
         skip_unchanged = True  # Evita actualizar si no hay cambios
         report_skipped = True
@@ -47,34 +40,36 @@ class UserResource(resources.ModelResource):
 # Admin personalizado para el modelo User
 class CustomUserAdmin(ImportExportModelAdmin):
     resource_class = UserResource
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_superuser')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'is_active')
     search_fields = ('username', 'email')
 
 # Desregistrar y volver a registrar el modelo User con el nuevo admin
-admin.site.unregister(User)
+try:
+    admin.site.unregister(User)
+except admin.sites.NotRegistered:
+    pass  # El modelo User puede no estar registrado aún, por eso se maneja el error
+
 admin.site.register(User, CustomUserAdmin)
 
-
-# Desregistrar y registrar de nuevo el modelo User
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
+# Registros de modelos personalizados
 
 @admin.register(Personal_Academico)
-class PersonalAcedemicoAdmin(admin.ModelAdmin):
-    CAMPOS_COMUNES = ('ci','Primer_nombre', 'primer_apellido','carrera_personal','fecha_nacimiento','correo_institucional',
-                    'telefono_contacto', 'asignaturas_impartidas','programa_educativo','nombramiento','tipo_contrato')
-    list_display = CAMPOS_COMUNES  
+class PersonalAcademicoAdmin(admin.ModelAdmin):
+    CAMPOS_COMUNES = ('ci', 'Primer_nombre', 'primer_apellido', 'carrera_personal', 'fecha_nacimiento',
+                     'correo_institucional', 'telefono_contacto', 'asignaturas_impartidas', 'programa_educativo',
+                     'nombramiento', 'tipo_contrato')
+    list_display = CAMPOS_COMUNES
     search_fields = CAMPOS_COMUNES
-    list_filter = ('carrera_personal','programa_educativo','nombramiento','tipo_contrato')
+    list_filter = ('carrera_personal', 'programa_educativo', 'nombramiento', 'tipo_contrato')
 
 @admin.register(Documento)
 class DocumentoAdmin(admin.ModelAdmin):
-    list_display = ('ci1','nombre', 'carrera','titulo','Año_Publiacion','Areas_Niveles')
-    search_fields = ('ci1','titulo','Año_Publiacion','Areas_Niveles')
-    list_filter = ('carrera','Año_Publiacion','Areas_Niveles')
+    list_display = ('ci1', 'nombre', 'carrera', 'titulo', 'Año_Publiacion', 'Areas_Niveles')
+    search_fields = ('ci1', 'titulo', 'Año_Publiacion', 'Areas_Niveles')
+    list_filter = ('carrera', 'Año_Publiacion', 'Areas_Niveles')
 
 @admin.register(Indicador20)
 class Indicador20Admin(admin.ModelAdmin):
-    list_display = ('Funciones_Sustantivas','nombre', 'carrera_Indicador20','autores','Productos_Resultados')
-    search_fields = ('Funciones_Sustantivas','nombre', 'carrera_Indicador20','autores','Productos_Resultados')
+    list_display = ('Funciones_Sustantivas', 'nombre', 'carrera_Indicador20', 'autores', 'Productos_Resultados')
+    search_fields = ('Funciones_Sustantivas', 'nombre', 'carrera_Indicador20', 'autores', 'Productos_Resultados')
     list_filter = ('Funciones_Sustantivas', 'carrera_Indicador20')
